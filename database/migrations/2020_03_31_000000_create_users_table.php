@@ -17,10 +17,16 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->integer('type_user')->default(1); //0 -> teacher; 1-> student
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->integer('birthday')->nullable();
+            $table->string('avatar')->nullable();
+            $table->integer('class')->nullable();
+
+            $table->foreignId('group_id')->constrained()->onDelete('cascade');
         });
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class InfoUserTable extends Migration
+class CreateGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class InfoUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('info_users', function (Blueprint $table) {
+        Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('Birthday');
-            $table->string('Avatar');
-            $table->integer('Class');
-            $table->integer('TypeOfUser');
+            $table->timestamps();
+            $table->string('name');
+            $table->integer('class');
+            $table->string('description')->nullable();
         });
     }
 
@@ -29,6 +29,6 @@ class InfoUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('info_users');
+        Schema::dropIfExists('groups');
     }
 }
