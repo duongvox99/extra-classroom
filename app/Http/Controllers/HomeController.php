@@ -25,4 +25,14 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    /**
+     * Show the teacher dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function teacherDashboard()
+    {
+        return view('teacherDashboard');
+    }
 }
