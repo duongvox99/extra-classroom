@@ -20,3 +20,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('teacher/dashboard', 'HomeController@teacherDashboard')->name('teacher.dashboard')->middleware('is_teacher');
