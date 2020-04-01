@@ -20,8 +20,8 @@ class CreateExamGroupTable extends Migration
             $table->foreignId('group_id')->constrained()->onDelete('cascade');
             $table->foreignId('exam_id')->constrained()->onDelete('cascade');
 
-            $table->timestamp('time_open');
-            $table->timestamp('time_close');
+            $table->timestamp('time_open')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('time_close')->default(\DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 
