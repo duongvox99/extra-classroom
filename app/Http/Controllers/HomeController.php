@@ -19,20 +19,56 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        if ( $request->user()->type_user == 0) {
+            return redirect()->route('teacher.dashboard');
+        } else {
+            return redirect()->route('student.dashboard');
+        }
     }
 
     /**
-     * Show the teacher dashboard.
+     * Display the profile.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Http\Response
      */
-    public function teacherDashboard()
+    public function showProfile()
     {
-        return view('teacherDashboard');
+        //
+    }
+
+    /**
+     * Show the form for editing the profile.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editProfile()
+    {
+        //
+    }
+
+    /**
+     * Update the profile in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function updateProfile(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Remove the all information of this profile from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyProfile()
+    {
+        //
     }
 }
