@@ -1,6 +1,7 @@
 @extends('layouts.appdemo')
 
 @section('title')
+Trung tâm điều khiển
 @endsection
 
 @section('content')

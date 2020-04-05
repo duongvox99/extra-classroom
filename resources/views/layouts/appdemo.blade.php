@@ -7,21 +7,21 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Trung tâm điều khiển | {{ config('app.name') }} - {{ config('app.subtitle')}}</title>
+    <title>@yield('title') | {{ config('app.name') }} - {{ config('app.subtitle')}}</title>
     <link rel="icon" href="{{ asset('img/icon.ico') }}" type="image/ico"/>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
 
     <!-- Themes template -->
     <!-- Bootstrap CSS-->
@@ -55,12 +55,12 @@
             </a>
         <ul class="ml-auto d-flex align-items-center list-unstyled mb-0">
           <li class="nav-item">
-            <!-- <form id="searchForm" class="ml-auto d-none d-lg-block">
+            <form id="searchForm" class="ml-auto d-none d-lg-block">
               <div class="form-group position-relative mb-0">
                 <button type="submit" style="top: -3px; left: 0;" class="position-absolute bg-white border-0 p-0"><i class="o-search-magnify-1 text-gray text-lg"></i></button>
                 <input type="search" placeholder="Search ..." class="form-control form-control-sm border-0 no-shadow pl-4">
               </div>
-            </form> -->
+            </form>
           </li>
           <li class="nav-item dropdown mr-3">
               <a id="notifications" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-gray-400 px-1">
@@ -110,7 +110,9 @@
                 </a>
               <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Settings</a><a href="#" class="dropdown-item">Activity log       </a>
               <div class="dropdown-divider"></div>
-              <a href="{{ route('logout') }}" class="dropdown-item">Logout</a>
+              <a href="{{ route('logout') }}" class="dropdown-item"
+              onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf  </form>
             </div>
           </li>
         </ul>
@@ -485,13 +487,14 @@
     </footer>
     
     <!-- JavaScript files-->
-    <!-- <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script> -->
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <!-- <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script> -->
     <script src="{{ asset('vendor/popper.js/umd/popper.min.js') }}"> </script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('vendor/jquery.cookie/jquery.cookie.js') }}"> </script>
     <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script> -->
+    <script src="{{ asset('js/charts-home.js') }}"></script>
     <script src="{{ asset('js/front.js') }}"></script>
 </body>
 </html>
