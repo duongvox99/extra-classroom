@@ -1,4 +1,4 @@
-@extends('layouts.teacher')
+@extends('layouts.appdemo')
 
 @section('title')
 @endsection
