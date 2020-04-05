@@ -93,7 +93,7 @@ class GroupUserController extends Controller
 
 
     /**
-     * Show view to create mass user of group.
+     * Show view to create mass user of groups.
      *
      * @param  int  group_id
      * @return \Illuminate\Http\Response
@@ -104,7 +104,7 @@ class GroupUserController extends Controller
     }
 
     /**
-     * Create mass user of group.
+     * Create mass user of groups.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  group_id

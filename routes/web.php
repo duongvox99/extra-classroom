@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| routes are loaded by the RouteServiceProvider within a groups which
+| contains the "web" middleware groups. Now create something great!
 |
 */
 
@@ -54,11 +54,11 @@ Route::middleware(['auth', 'is_teacher'])->name('teacher.')->prefix('teacher')->
         'notifications' => 'NotificationController',
         'topics' => 'TopicController',
 
-        'groups.users', 'GroupUserController',
-        'groups.notifications', 'GroupNotificationController',
-        'groups.exams', 'GroupExamController',
-        'exams.questions', 'ExamQuestionController',
-        'topics.questions', 'TopicQuestionController',
+        'groups.users' => 'GroupUserController',
+        'groups.notifications' => 'GroupNotificationController',
+        'groups.exams' => 'GroupExamController',
+        'exams.questions' => 'ExamQuestionController',
+        'topics.questions' => 'TopicQuestionController',
     ]);
 
     Route::get('groups/{group_id}/users/mass_create', 'GroupUserController@showCreateMassUser')->where('group_id', '[0-9]+')->name('mass_create_user');

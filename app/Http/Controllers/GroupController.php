@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class GroupController extends Controller
 {
+    private $customMessages = [
+            'name.required' => 'Tên nhóm không được rỗng',
+            'class.required'  => 'Lớp không được rỗng',
+            'name.unique' => 'Tên nhóm đã tồn tại',
+            'name.max' => 'Tên nhóm phải ít hơn 255 ký tự'
+        ];
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,11 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
+        $groups = Group::where('id', '>', 1)->get();
+        foreach ($groups as $group) {
+            $group->totalStudent = $group->users()->count();
+        }
+        return view('teacher.groups.index', compact('groups'));
     }
 
     /**
@@ -24,7 +35,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+        return view('teacher.groups.create');
     }
 
     /**
@@ -35,7 +46,14 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = $request->validate([
+            'name' => 'required|unique:groups|max:255',
+            'class' => 'required',
+        ], $this->customMessages);
+
+        Group::create($request->all());
+
+        return redirect()->route('teacher.groups.index')->with('isStored', true);
     }
 
     /**
@@ -46,7 +64,13 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
-        //
+        $group['exams'] = $group->exams();
+        $group['notifications'] = $group->notifications();
+
+        $group['exams'] = [];
+        $group['notifications'] = [];
+//        return $group;
+        return view('teacher.groups.show', compact('group'));
     }
 
     /**
@@ -57,7 +81,11 @@ class GroupController extends Controller
      */
     public function edit(Group $group)
     {
-        //
+        if ($group->id == 1)
+        {
+            abort(404);
+        }
+        return view('teacher.groups.edit', compact('group'));
     }
 
     /**
@@ -69,17 +97,26 @@ class GroupController extends Controller
      */
     public function update(Request $request, Group $group)
     {
-        //
+        $validator = $request->validate([
+            'name' => 'required|max:255',
+            'class' => 'required',
+        ], $this->customMessages);
+        $group->update($request->all());
+
+        return redirect()->route('teacher.groups.index')->with('isUpdated', true);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Group  $group
+     * @param \App\Group $group
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Group $group)
     {
-        //
+        $group->delete();
+
+        return redirect()->route('teacher.groups.index')->with('isDestroyed', true);
     }
 }
