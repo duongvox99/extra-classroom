@@ -4,26 +4,23 @@
 Trung tâm điều khiển
 @endsection
 
-@section('page-content')
+@section('content')
 <div class="page-holder w-100 d-flex flex-wrap">
         <div class="container-fluid px-xl-5">
             <section class="py-5">
                 <div class="container-content">
-                    
-                
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-                <div class="card-body">
-                    You are Teacher.
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
+                  <div class="container">
+                      <div class="row justify-content-center">
+                          <div class="col-md-8">
+                              <div class="card">
+                                  <div class="card-header">Dashboard</div>
+                                  <div class="card-body">
+                                      You are Teacher.
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
                 </div>
             </section>
           <section class="py-5">

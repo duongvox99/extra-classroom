@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('sidebar-items')
 <div id="sidebar" class="sidebar py-3">
