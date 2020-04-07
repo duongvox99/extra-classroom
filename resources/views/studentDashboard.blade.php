@@ -1,4 +1,4 @@
-@extends('layouts.teacher')
+@extends('layouts.student')
 
 @section('title')
 Trung tâm điều khiển
