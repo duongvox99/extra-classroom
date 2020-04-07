@@ -1,5 +1,9 @@
 @extends('layouts.dashboard')
 
+@section('role')
+    Teacher
+@endsection
+
 @section('sidebar-items')
 <div id="sidebar" class="sidebar py-3">
     <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">MAIN</div>
@@ -11,6 +15,12 @@
                 </a>
             </li>
             <li class="sidebar-list-item">
+                <a href="{{ route('teacher.groups.index') }}" class="sidebar-link text-muted">
+                    <i class="o-user-details-1 mr-3 text-gray"></i>
+                    <span>Nhóm</span>
+                </a>
+            </li>
+            <!-- <li class="sidebar-list-item">
                 <a href="{{ route('teacher.groups.index') }}" data-toggle="collapse" data-target="#pages" aria-expanded="false" aria-controls="pages" class="sidebar-link text-muted">
                     <i class="o-user-details-1 mr-3 text-gray"></i>
                     <span>Nhóm lớp học</span>
@@ -23,7 +33,7 @@
                     <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">Lớp con cằc</a></li>
                     </ul>
                 </div>
-            </li>
+            </li> -->
             <li class="sidebar-list-item">
                 <a href="{{ route('teacher.exams.index') }}" class="sidebar-link text-muted">
                     <i class="o-sales-up-1 mr-3 text-gray"></i>
@@ -70,8 +80,8 @@
                 </a></li>
             <li class="sidebar-list-item">
                 <a href="#" class="sidebar-link text-muted">
-                    <i class="o-imac-screen-1 mr-3 text-gray"></i><
-                        span>Demo</span>
+                    <i class="o-imac-screen-1 mr-3 text-gray"></i>
+                    <span>Demo</span>
                     </a></li>
             <li class="sidebar-list-item">
                 <a href="#" class="sidebar-link text-muted">

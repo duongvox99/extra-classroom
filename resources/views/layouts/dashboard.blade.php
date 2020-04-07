@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
-@section('extend-scripts-head')
+@section('title')
+  Trung tâm điều khiển
+@endsection
+
+@section('head-script')
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -118,7 +122,7 @@
     </footer>
 @endsection
 
-@section('extend-scripts')
+@section('ui-script')
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/popper.js/umd/popper.min.js') }}"> </script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>

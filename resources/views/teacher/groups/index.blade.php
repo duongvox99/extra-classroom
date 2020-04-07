@@ -1,7 +1,7 @@
 @extends('layouts.teacher')
 
 @section('title')
-    Danh sách nhóm học sinh -
+    Danh sách nhóm học sinh
 @endsection
 
 @section('extend-script')
