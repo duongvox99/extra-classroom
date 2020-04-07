@@ -1,9 +1,9 @@
 @extends('errors.errLayout')
 
 @section('errCode')
-404
+500
 @endsection
 
 @section('errMessage')
-PAGE NOT FOUND
+SERVER ERROR
 @endsection

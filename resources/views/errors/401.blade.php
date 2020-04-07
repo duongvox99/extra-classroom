@@ -1,9 +1,9 @@
 @extends('errors.errLayout')
 
 @section('errCode')
-404
+401
 @endsection
 
 @section('errMessage')
-PAGE NOT FOUND
+UNAUTHORIZED
 @endsection
