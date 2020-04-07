@@ -17,7 +17,7 @@ Login
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,800">
     <link rel="stylesheet" href="{{ asset('css/orionicons.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.default.css') }}" id="theme-stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/style.green.css') }}" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
@@ -51,7 +51,7 @@ Login
     <div class="row">
         <div class="col">
             <div class="card">
-                <h2 class="card-header text-center text-success"><small>{{ __('Login') }} |</small> Extra Classroom</h2>
+                <h2 class="card-header text-center text-primary"><small>{{ __('Login') }} |</small> Extra Classroom</h2>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -69,7 +69,7 @@ Login
 
                         <div class="form-group">
                             <input id="password" type="password" placeholder="{{ __('Password') }}"
-                            class="form-control form-control-lg shadow @error('password') is-invalid @enderror" 
+                            class="form-control form-control-lg text-success shadow @error('password') is-invalid @enderror" 
                             name="password" required autocomplete="current-password">
 
                             @error('password')
