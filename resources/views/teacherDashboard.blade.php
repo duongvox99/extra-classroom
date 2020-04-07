@@ -4,6 +4,10 @@
 Trung tâm điều khiển
 @endsection
 
+@section('role')
+Teacher
+@endsection
+
 @section('content')
 <div class="page-holder w-100 d-flex flex-wrap">
         <div class="container-fluid px-xl-5">

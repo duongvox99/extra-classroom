@@ -51,7 +51,7 @@ Login
     <div class="row">
         <div class="col">
             <div class="card">
-                <h2 class="card-header text-center text-success">{{ __('Login') }} - Extra Classroom</h2>
+                <h2 class="card-header text-center text-success"><small>{{ __('Login') }} |</small> Extra Classroom</h2>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -96,7 +96,7 @@ Login
                             </button>
 
                             <a href="{{ route('password.request') }} " class="btn btn-lg btn-outline-secondary" >
-                                {{ __('Forgot Your Password?') }}
+                                {{ __('What is my password?') }}
                             </a>
 
                             <!-- cái gì đây méo hiểu :v -->
