@@ -18,6 +18,9 @@ Login
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,800">
     <link rel="stylesheet" href="{{ asset('css/orionicons.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.green.css') }}" id="theme-stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
@@ -50,7 +53,7 @@ Login
 <div class="page-holder container-fluid d-flex align-items-center justify-content-center">
     <div class="row">
         <div class="col">
-            <div class="card">
+            <div id="card-login" class="card animated flipInX">
                 <h2 class="card-header text-center text-primary"><small>{{ __('Login') }} |</small> Extra Classroom</h2>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -122,4 +125,18 @@ Login
     <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script src="{{ asset('js/front.js') }}"></script>
+
+    <script>
+    // Hàm này là hiệu ứng cho case input sai
+    // Mày làm validate trên server nên tao chưa chèn vào được.
+    // Mày thử cách nào thêm vào cho đẹp nhá
+    function doErrorAnimate() {
+        $('#card-login').removeClass()
+                        .addClass('card animated shake faster delay-1s')
+                        .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+                            function(){
+                                $(this).removeClass().addClass('card animated'); 
+                            });
+    };
+    </script>
 @endsection
