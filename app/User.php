@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'type_user', 'password', 'birthday', 'avatar', 'class', 'group_id'
     ];
 
     /**
@@ -36,4 +36,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function group()
+    {
+        return $this->belongsTo('App\Group');
+    }
+
+    public function exam_scores()
+    {
+        return $this->belongsToMany('App\Exam', 'scores')->withPivot('score');
+    }
+
+    public function score()
+    {
+        return $this->belongsToMany('App\Exam', 'scores')->withPivot('score')->sum('score');
+    }
+
+    public function answers($exam_id)
+    {
+        return $this->belongsToMany('App\Exam', 'user_answers')->wherePivot('exam_id', $exam_id)->withPivot('user_answer');
+    }
 }

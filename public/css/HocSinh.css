@@ -1,0 +1,262 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url('/ExtraClassroomWebsite/public/img/background.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.my-active
+{
+    background-color: #005000;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 16px 0 16px 0;
+}
+
+
+#header {
+    width: 100%;
+}
+
+.my-nav {
+    width: 100%;
+    padding: 0px;
+    background-color: darkgreen;
+}
+
+.my-nav ul {
+    list-style-type: none;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    /*margin: auto;*/
+}
+
+.my-nav .my-nav-menu li a:hover {
+    background-color: #005000;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 16px;
+    padding-bottom:16px;
+    /*padding: 16px 0 16px 0;*/
+}
+
+.my-nav .my-nav-menu li a {
+    /*background-color: #005000;*/
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 16px;
+    padding-bottom:16px;
+}
+
+.my-nav .account .dropdown-menu-custom {
+    background-color: darkgreen;
+}
+
+.my-nav .account li a:hover {
+    background-color: #005000;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    /*padding: 16px;*/
+}
+
+
+
+
+.my-nav ul li a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+#banner {
+    height: 200px;
+    /*	background-repeat: no-repeat;*/
+    background-color: #3E960B;
+    text-align: center;
+}
+
+#footer {
+    background: #1F1E23;
+    color: #FFFFFF;
+    /*line-height: 2px;*/
+    text-align: center;
+    /*border: 1px solid red;*/
+    padding: 20px 0 20px 0;
+}
+
+#question-num-list li {
+    padding-top: 5px;
+    display: inline-table;
+}
+
+@media screen and (max-width: 980px) {
+    #question-num-list li {
+        padding: 5px;
+        display: inline-table;
+    }
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.new-banner-location {
+    top: -25px;
+    right: 10px;
+}
+
+.new-banner .new-banner-location .new-banner-svg {
+    width: 90px;
+    height: 90px;
+}
+
+@media screen and (min-width: 768px) {
+    .custom-collapse .collapse {
+        display: block;
+    }
+}
+
+/*CSS of Countdown Clock*/
+
+@import url(http://fonts.googleapis.com/css?family=Lato:100,400);
+.mb20 {
+    margin-bottom: 20px;
+}
+
+section {
+    padding: 40px 0;
+}
+
+#timer .countdown-wrapper {
+    margin: 0 auto;
+}
+
+#timer #countdown {
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    color: #eee;
+    text-shadow: 1px 1px 5px black;
+    padding: 20px 0;
+}
+
+#timer .countdown-wrapper #countdown .timer {
+    margin: 0px;
+    padding: 10px;
+    font-size: 90px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/*#timer .col-md-4.countdown-wrapper #countdown .timer {
+    margin: 10px;
+    padding: 20px;
+    font-size: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+}*/
+
+#timer .countdown-wrapper #countdown #hour {
+    -webkit-box-shadow: 0 0 0 5px rgba(2, 117, 216, .5);
+    -moz-box-shadow: 0 0 0 5px rgba(2, 117, 216, .5);
+    box-shadow: 0 0 0 5px rgba(2, 117, 216, .5);
+}
+
+#timer .countdown-wrapper #countdown #hour:hover {
+    -webkit-box-shadow: 0px 0px 15px 1px rgba(92, 184, 92, 1);
+    -moz-box-shadow: 0px 0px 15px 1px rgba(92, 184, 92, 1);
+    box-shadow: 0px 0px 15px 1px rgba(92, 184, 92, 1);
+}
+
+#timer .countdown-wrapper #countdown #min {
+    -webkit-box-shadow: 0 0 0 5px rgba(91, 192, 222, .5);
+    -moz-box-shadow: 0 0 0 5px rgba(91, 192, 222, .5);
+    box-shadow: 0 0 0 5px rgba(91, 192, 222, .5);
+}
+
+#timer .countdown-wrapper #countdown #min:hover {
+    -webkit-box-shadow: 0px 0px 15px 1px rgb(91, 192, 222);
+    -moz-box-shadow: 0px 0px 15px 1px rgb(91, 192, 222);
+    box-shadow: 0px 0px 15px 1px rgb(91, 192, 222);
+}
+
+#timer .countdown-wrapper #countdown #sec {
+    -webkit-box-shadow: 0 0 0 5px rgba(2, 117, 216, .5);
+    -moz-box-shadow: 0 0 0 5px rgba(2, 117, 216, .5);
+    box-shadow: 0 0 0 5px rgba(2, 117, 216, .5)
+}
+
+#timer .countdown-wrapper #countdown #sec:hover {
+    -webkit-box-shadow: 0px 0px 15px 1px rgba(2, 117, 216, 1);
+    -moz-box-shadow: 0px 0px 15px 1px rgba(2, 117, 216, 1);
+    box-shadow: 0px 0px 15px 1px rgba(2, 117, 216, 1);
+}
+
+#timer .countdown-wrapper .card .card-footer .btn {
+    margin: 2px 0;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    #timer .countdown-wrapper #countdown .timer {
+        margin: 10px;
+        padding: 10px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    #timer .countdown-wrapper #countdown .timer {
+        margin: 10px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    #timer .countdown-wrapper #countdown .timer {
+        margin: 10px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 767px) {
+    #timer .countdown-wrapper #countdown #hour, #timer .countdown-wrapper #countdown #min, #timer .countdown-wrapper #countdown #sec {
+        font-size: 15px;
+        border-radius: 4%;
+    }
+}
+
+@media(max-width: 990px) {
+    .card-footer {
+        display: none;
+    }
+}
+
+#timer .countdown-wrapper #countdown #hour, #timer .countdown-wrapper #countdown #min, #timer .countdown-wrapper #countdown #sec {
+    font-size: 20px;
+    border-radius: 50%;
+}
+
+/*    #timer .countdown-wrapper #countdown .timer {
+        padding: 2px;
+    }
+*/
+
+#timer .countdown-wrapper #countdown span.dots {
+    margin-top: -5px;
+    font-size: 20px;
+    color: blue;
+}

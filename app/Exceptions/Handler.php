@@ -50,6 +50,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        // Catch respone error code
+        // and redirect to views/errors/<error-code>.blade.php
+        // if ($this->isHttpException($exception)) {
+        //     if (view()->exists('errors.' . $exception->getStatusCode())) {
+        //         return response()->view('errors.' . $exception->getStatusCode(), [], $exception->getStatusCode());
+        //     }
+        // }
+
         return parent::render($request, $exception);
     }
 }

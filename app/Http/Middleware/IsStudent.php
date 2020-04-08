@@ -18,6 +18,6 @@ class IsStudent
         if(auth()->user()->type_user == 1) {
             return $next($request);
         }
-        return redirect('home')->with('error',"You don't have teacher access.");
+        return redirect('home')->with('error',"You don't have student access.");
     }
 }
