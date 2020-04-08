@@ -58,7 +58,7 @@
                   <div class="text ml-2">
                     <p class="mb-0">You have 2 followers</p>
                   </div>
-                </div></a><a href="#" class="dropdown-item"> 
+                </div></a><a href="#" class="dropdown-item">
                 <div class="d-flex align-items-center">
                   <div class="icon icon-sm bg-green text-white"><i class="fas fa-envelope"></i></div>
                   <div class="text ml-2">
