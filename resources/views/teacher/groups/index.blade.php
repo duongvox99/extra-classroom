@@ -26,12 +26,7 @@
     @endif
 @endsection
 
-@section('nav-teacher-groups')
-    style="background-color: green;"
-@endsection
-
 @section('content')
-
     <div class="page-header zvn-page-header clearfix">
         <div class="zvn-page-header-title">
             <h3>Danh sách nhóm</h3>

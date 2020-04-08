@@ -9,13 +9,14 @@
     <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">MAIN</div>
     <ul class="sidebar-menu list-unstyled">
             <li class="sidebar-list-item">
-                <a href="/" class="sidebar-link text-muted active">
+                <a href="/" class="sidebar-link text-muted {{ request()->is('teacher') ? 'active' : '' }}">
                     <i class="o-home-1 mr-3 text-gray"></i>
                     <span>Home</span>
                 </a>
             </li>
             <li class="sidebar-list-item">
-                <a href="{{ route('teacher.groups.index') }}" class="sidebar-link text-muted">
+                <a href="{{ route('teacher.groups.index') }}"
+                    class="sidebar-link text-muted {{ request()->is('teacher/groups*') ? 'active' : '' }}">
                     <i class="o-user-details-1 mr-3 text-gray"></i>
                     <span>Nhóm</span>
                 </a>
@@ -35,25 +36,29 @@
                 </div>
             </li> -->
             <li class="sidebar-list-item">
-                <a href="{{ route('teacher.exams.index') }}" class="sidebar-link text-muted">
+                <a href="{{ route('teacher.exams.index') }}"
+                    class="sidebar-link text-muted {{ request()->is('teacher/exams*') ? 'active' : '' }}">
                     <i class="o-sales-up-1 mr-3 text-gray"></i>
                     <span>Đề kiểm tra</span>
                 </a>
             </li>
             <li class="sidebar-list-item">
-                <a href="{{ route('teacher.users.index') }}" class="sidebar-link text-muted">
+                <a href="{{ route('teacher.users.index') }}"
+                    class="sidebar-link text-muted {{ request()->is('teacher/users*') ? 'active' : '' }}">
                     <i class="o-survey-1 mr-3 text-gray"></i>
                     <span>Người dùng</span>
                 </a>
             </li>
             <li class="sidebar-list-item">
-                <a href="{{ route('teacher.topics.index') }}" class="sidebar-link text-muted">
+                <a href="{{ route('teacher.topics.index') }}"
+                    class="sidebar-link text-muted {{ request()->is('teacher/topics*') ? 'active' : '' }}">
                     <i class="o-survey-1 mr-3 text-gray"></i>
                     <span>Chủ đề câu hỏi</span>
                 </a>
             </li>
             <li class="sidebar-list-item">
-                <a href="{{ route('teacher.questions.index') }}" class="sidebar-link text-muted">
+                <a href="{{ route('teacher.questions.index') }}"
+                    class="sidebar-link text-muted {{ request()->is('teacher/questions*') ? 'active' : '' }}">
                     <i class="o-survey-1 mr-3 text-gray"></i>
                     <span>Ngân hàng câu hỏi</span>
                 </a>
