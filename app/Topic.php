@@ -9,7 +9,7 @@ class Topic extends Model
     protected $table = 'topics';
 
     protected $fillable = [
-        'name', 'class', 'description'
+        'name', 'type_of_class', 'class', 'description'
     ];
 
     public function questions()

@@ -14,7 +14,7 @@ class Group extends Model
     protected $table = 'groups';
 
     protected $fillable = [
-        'name', 'class'
+        'name', 'class', 'description'
     ];
 
     public function users()

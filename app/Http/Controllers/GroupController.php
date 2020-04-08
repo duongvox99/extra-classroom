@@ -64,12 +64,22 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
-        $group['exams'] = $group->exams();
-        $group['notifications'] = $group->notifications();
+        $exams = $group->exams();
+        if ($exams) {
+            $group['exams'] = [];
+        }
+        else {
+            $group['exams'] = $exams;
+        }
 
-        $group['exams'] = [];
-        $group['notifications'] = [];
-//        return $group;
+        $notifications = $group->notifications();
+        if ($notifications) {
+            $group['notifications'] = [];
+        }
+        else {
+            $group['notifications'] = $exams;
+        }
+
         return view('teacher.groups.show', compact('group'));
     }
 
