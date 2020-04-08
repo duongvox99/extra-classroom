@@ -76,7 +76,7 @@
                 </a>
             </li>
     </ul>
-    <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">EXTRAS</div>
+    <!-- <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">EXTRAS</div>
     <ul class="sidebar-menu list-unstyled">
             <li class="sidebar-list-item">
                 <a href="#" class="sidebar-link text-muted">
@@ -98,6 +98,6 @@
                     <i class="o-wireframe-1 mr-3 text-gray"></i>
                     <span>Demo</span>
                 </a></li>
-    </ul>
+    </ul> -->
 </div>
 @endsection

@@ -131,10 +131,6 @@
         </div>
       </div>
     </footer>
-
-    <!-- <footer class="container-fluid bg-dark py-3 text-center fixed-bottom">
-        <span class="text-muted">Copyright © <b><a href="https://www.facebook.com/duongvox" target="_blank">noBUG Team</a></b></span>
-    </footer> -->
 @endsection
 
 @section('ui-script')
