@@ -5,7 +5,7 @@
 @endsection
 
 @section('extend-script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/2.5.1/jquery-confirm.min.js" integrity="sha256-tAQERQQw9PNRkWys5CowxwNM2Sw0hnZVpNstkq2jbgY=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js" integrity="sha256-Ka8obxsHNCz6H9hRpl8X4QV3XmhxWyqBpk/EpHYyj9k=" crossorigin="anonymous"></script>
     <script src="{{ asset('js/NotifyFunctions.js') }}"></script>
 
     @if (Session::has('isStored'))
