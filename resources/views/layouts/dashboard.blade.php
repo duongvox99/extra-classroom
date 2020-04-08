@@ -7,10 +7,7 @@
 @section('head-script')
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
 
     <!-- Themes template -->
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
@@ -18,7 +15,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,800">
     <link rel="stylesheet" href="{{ asset('css/orionicons.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.green.css') }}" id="theme-stylesheet">
-    <!-- Custom stylesheet - for your changes-->
+    <!-- Custom stylesheet -->
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
     <!-- Favicon-->
@@ -28,6 +25,8 @@
 
     <!-- Old project scripts -->
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
+    <!-- Styles -->
+    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
 @endsection
 
 @section('page-header')
@@ -36,8 +35,8 @@
             <a href="#" class="sidebar-toggler text-gray-500 mr-4 mr-lg-5 lead">
               <i class="fas fa-align-left"></i>
             </a>
-            <a href="/" class="navbar-brand font-weight-bold text-uppercase text-base">
-                {{ config('app.name') }} - @yield('role')
+            <a href="/" class="navbar-brand font-weight-bold text-uppercase">
+              {{ config('app.name') }} - @yield('role')
             </a>
         <ul class="ml-auto d-flex align-items-center list-unstyled mb-0">
           <li class="nav-item">
@@ -117,9 +116,25 @@
 @endsection
 
 @section('page-footer')
-    <footer class="container-fluid bg-dark py-3 text-center fixed-bottom">
-        <span class="text-muted">Copyright © <b><a href="https://www.facebook.com/duongvox" target="_blank">noBUG Team</a></b></span>
+
+  <footer class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6 text-center text-md-left text-primary">
+            <p class="mb-2 mb-md-0">
+            <span class="text-muted">Copyright © <b><a href="https://www.facebook.com/duongvox" target="_blank">noBUG Team</a></b></span>
+            </p>
+          </div>
+          <div class="col-md-6 text-center text-md-right text-gray-400 ">
+            <p class="mb-0">Template by <a href="https://bootstrapious.com/admin-templates" class="external text-gray-400">Bootstrapious</a></p>
+          </div>
+        </div>
+      </div>
     </footer>
+
+    <!-- <footer class="container-fluid bg-dark py-3 text-center fixed-bottom">
+        <span class="text-muted">Copyright © <b><a href="https://www.facebook.com/duongvox" target="_blank">noBUG Team</a></b></span>
+    </footer> -->
 @endsection
 
 @section('ui-script')
