@@ -19,6 +19,7 @@ class CreateExamsTable extends Migration
             $table->string('name');
             $table->integer('type_exam');
             $table->boolean('is_show_solution');
+            $table->integer('type_of_class')->nullable();
             $table->integer('class')->nullable();
             $table->json('number_questions');
             $table->integer('time_limit'); // by minute

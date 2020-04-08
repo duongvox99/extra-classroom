@@ -19,6 +19,7 @@ class CreateUserAnswersTable extends Migration
 
             $table->foreignId('exam_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->integer('times')->default(1);
             $table->foreignId('question_id')->constrained()->onDelete('cascade');
 
             $table->integer('user_answer');

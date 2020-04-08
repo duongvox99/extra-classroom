@@ -20,6 +20,7 @@ class CreateQuestionsTable extends Migration
             $table->json('question');
             $table->integer('true_answer');
             $table->text('solution');
+            $table->integer('type_of_class')->nullable();
             $table->integer('class')->nullable();
 
             $table->foreignId('topic_id')->constrained()->onDelete('cascade');

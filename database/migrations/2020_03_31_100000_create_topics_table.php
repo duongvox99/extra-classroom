@@ -18,6 +18,7 @@ class CreateTopicsTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->integer('class')->nullable();
+            $table->integer('type_of_class')->nullable();
             $table->integer('description')->nullable();
         });
     }

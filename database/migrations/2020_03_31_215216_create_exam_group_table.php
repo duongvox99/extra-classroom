@@ -20,6 +20,7 @@ class CreateExamGroupTable extends Migration
             $table->foreignId('group_id')->constrained()->onDelete('cascade');
             $table->foreignId('exam_id')->constrained()->onDelete('cascade');
 
+            $table->integer('number_of_submit')->nullable();
             $table->timestamp('time_open');
             $table->timestamp('time_close');
         });

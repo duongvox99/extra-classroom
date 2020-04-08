@@ -18,6 +18,7 @@ class CreateScoresTable extends Migration
             $table->timestamps();
             $table->foreignId('exam_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->integer('times')->default(1);
             $table->float('score');
         });
     }

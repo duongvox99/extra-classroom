@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    private $customMessages = [
+        'name.required' => 'Tên nhóm không được rỗng',
+        'class.required'  => 'Lớp không được rỗng',
+        'name.unique' => 'Tên nhóm đã tồn tại',
+        'name.max' => 'Tên nhóm phải ít hơn 255 ký tự'
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return view('teacher.$users.index', compact('$users'));
     }
 
     /**
@@ -24,7 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('teacher.users.create');
     }
 
     /**
@@ -35,7 +43,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|unique:users',
+            'type_user' => 'required',
+            'password' => 'required|min:8',
+            'birthday' => 'required',
+            'class' => 'required',
+            'group_id' => 'required',
+        ], $this->customMessages);
+
+        User::create($request->all());
+
+        return redirect()->route('teacher.users.index')->with('isStored', true);
     }
 
     /**
