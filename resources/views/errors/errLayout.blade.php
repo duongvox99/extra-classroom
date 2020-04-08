@@ -4,7 +4,7 @@
 @yield('errCode') - @yield('errMessage')
 @endsection
 
-@section('extend-scripts-head')
+@section('head-script')
     <style>
         html, body {
             height: 100%;
@@ -138,7 +138,7 @@
         .btn-hover:focus {
             outline: none;
         }
-        
+
         .btn-hover.color-1 {
             background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
             box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
@@ -191,6 +191,6 @@
             <h1 data-h1="@yield('errCode')">@yield('errCode')</h1>
             <p>@yield('errMessage')</p>
         </div>
-    </div>    
+    </div>
     <a href="/"><button class="btn-back btn-hover color-7">BACK HOME</button></a>
 @endsection
