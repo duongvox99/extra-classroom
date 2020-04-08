@@ -1,125 +1,103 @@
-<!doctype html>
-<html lang="vi">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.dashboard')
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+@section('role')
+    Teacher
+@endsection
 
-    <title>
-        @yield('title')Bảng điều khiển giáo viên
-    </title>
-
-    <link rel="icon" href="{{ asset('img/icon.ico') }}" type="image/ico"/>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
-
-    {{-- need to optimize --}}
-    <link rel="stylesheet" href="{{ asset('css/BangDieuKhienGiaoVien.css') }}">
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js" integrity="sha256-Ka8obxsHNCz6H9hRpl8X4QV3XmhxWyqBpk/EpHYyj9k=" crossorigin="anonymous"></script>
-    @yield('extend-script')
-</head>
-
-<body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-2 left_col position-relative">
-
-            <nav class="nav flex-column my-nav">
-                <div class="navbar navbar-brand nav_title" style="border: 0;">
-                    <a href="" class="site_title"><img src="{{ asset('img/math-logo.png') }}" alt="Logo" style="width:40px;">
-                        <span><strong>ExtraClassroom</strong></span></a>
+@section('sidebar-items')
+<div id="sidebar" class="sidebar py-3">
+    <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">MAIN</div>
+    <ul class="sidebar-menu list-unstyled">
+            <li class="sidebar-list-item">
+                <a href="/" class="sidebar-link text-muted {{ request()->is('teacher') ? 'active' : '' }}">
+                    <i class="o-home-1 mr-3 text-gray"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="sidebar-list-item">
+                <a href="{{ route('teacher.groups.index') }}"
+                    class="sidebar-link text-muted {{ request()->is('teacher/groups*') ? 'active' : '' }}">
+                    <i class="o-user-details-1 mr-3 text-gray"></i>
+                    <span>Nhóm</span>
+                </a>
+            </li>
+            <!-- <li class="sidebar-list-item">
+                <a href="{{ route('teacher.groups.index') }}" data-toggle="collapse" data-target="#pages" aria-expanded="false" aria-controls="pages" class="sidebar-link text-muted">
+                    <i class="o-user-details-1 mr-3 text-gray"></i>
+                    <span>Nhóm lớp học</span>
+                </a>
+                <div id="pages" class="collapse">
+                    <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
+                    <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">Lớp 10A1</a></li>
+                    <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">Lớp 11 Chuyên tin</a></li>
+                    <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">Lớp du ♥</a></li>
+                    <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">Lớp con cằc</a></li>
+                    </ul>
                 </div>
-                <ul class="nav flex-column my-nav-menu">
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="{{ route('teacher.groups.index') }}" @yield('nav-teacher-groups')><i
-                                class="fas fa-users"></i> Nhóm lớp học</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="{{ route('teacher.exams.index') }}" @yield('nav-teacher-exams')><i
-                                class="fas fa-star"></i> Đề kiểm tra</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="{{ route('teacher.users.index') }}" @yield('nav-teacher-users')><i
-                                class="fas fa-user"></i> Người dùng</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="{{ route('teacher.topics.index') }}" @yield('nav-teacher-topics')><i
-                                class="fas fa-th-list"></i> Chủ đề câu hỏi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="{{ route('teacher.questions.index') }}" @yield('nav-teacher-questions')><i
-                                class="fas fa-stream"></i> Ngân hàng câu hỏi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="{{ route('leaderboard') }}" @yield('nav-leaderboard')><i
-                                class="fas fa-trophy"></i> Bảng xếp hạng</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        <div class="col-lg-10 right_col" role="main">
-            <!-- top navigation -->
-            <nav class="navbar navbar-default navbar-expand-md my-nav">
-                <ul class="navbar-nav ml-auto account">
-                    <!-- Dropdown -->
-                    <li class="nav-item dropdown ">
-                        <a id="navbarDropdownMenuLink" class="nav-link dropdown-toggle account" href="{{ route('profile') }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="
-                                @if (Auth::user()->avatar != "")
-                                    {{Auth::user()->avatar}}
-                                @else
-                                    {{ asset('img/no-avatar.png') }}
-                                @endif" alt="Avatar" class="avatar">
-
-                            <span>{{ Auth::user()->name }}</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-custom" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="{{ route('profile') }}">Hồ sơ cá nhân</a>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                Đăng xuất
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-            <!-- /top navigation -->
-            <!-- page content -->
-            <div class="container-content">
-                @yield('content')
-            </div>
-
-        </div>
-        <!-- /page content -->
-    </div>
-
-
+            </li> -->
+            <li class="sidebar-list-item">
+                <a href="{{ route('teacher.exams.index') }}"
+                    class="sidebar-link text-muted {{ request()->is('teacher/exams*') ? 'active' : '' }}">
+                    <i class="o-sales-up-1 mr-3 text-gray"></i>
+                    <span>Đề kiểm tra</span>
+                </a>
+            </li>
+            <li class="sidebar-list-item">
+                <a href="{{ route('teacher.users.index') }}"
+                    class="sidebar-link text-muted {{ request()->is('teacher/users*') ? 'active' : '' }}">
+                    <i class="o-survey-1 mr-3 text-gray"></i>
+                    <span>Người dùng</span>
+                </a>
+            </li>
+            <li class="sidebar-list-item">
+                <a href="{{ route('teacher.topics.index') }}"
+                    class="sidebar-link text-muted {{ request()->is('teacher/topics*') ? 'active' : '' }}">
+                    <i class="o-survey-1 mr-3 text-gray"></i>
+                    <span>Chủ đề câu hỏi</span>
+                </a>
+            </li>
+            <li class="sidebar-list-item">
+                <a href="{{ route('teacher.questions.index') }}"
+                    class="sidebar-link text-muted {{ request()->is('teacher/questions*') ? 'active' : '' }}">
+                    <i class="o-survey-1 mr-3 text-gray"></i>
+                    <span>Ngân hàng câu hỏi</span>
+                </a>
+            </li>
+            <li class="sidebar-list-item">
+                <a href="{{ route('leaderboard') }}" class="sidebar-link text-muted">
+                    <i class="o-survey-1 mr-3 text-gray"></i>
+                    <span>Bảng xếp hạng</span>
+                </a>
+            </li>
+            <li class="sidebar-list-item">
+                <a href="login.html" class="sidebar-link text-muted">
+                    <i class="o-exit-1 mr-3 text-gray"></i>
+                    <span>Login</span>
+                </a>
+            </li>
+    </ul>
+    <!-- <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">EXTRAS</div>
+    <ul class="sidebar-menu list-unstyled">
+            <li class="sidebar-list-item">
+                <a href="#" class="sidebar-link text-muted">
+                    <i class="o-database-1 mr-3 text-gray"></i>
+                    <span>Demo</span>
+                </a></li>
+            <li class="sidebar-list-item">
+                <a href="#" class="sidebar-link text-muted">
+                    <i class="o-imac-screen-1 mr-3 text-gray"></i>
+                    <span>Demo</span>
+                    </a></li>
+            <li class="sidebar-list-item">
+                <a href="#" class="sidebar-link text-muted">
+                    <i class="o-paperwork-1 mr-3 text-gray"></i>
+                    <span>Demo</span>
+                </a></li>
+            <li class="sidebar-list-item">
+                <a href="#" class="sidebar-link text-muted">
+                    <i class="o-wireframe-1 mr-3 text-gray"></i>
+                    <span>Demo</span>
+                </a></li>
+    </ul> -->
 </div>
-<div id="footer">
-    <footer>
-        <span class="text-muted">Copyright © <b><a href="https://www.facebook.com/duongvox" target="_blank">Dương Võ</a></b></span>
-    </footer>
-</div>
-</body>
-
-</html>
+@endsection
