@@ -14,7 +14,7 @@ class GroupSeeder extends Seeder
         DB::table('groups')->insert([
             'name' => 'Admin',
             'class' => 0,
-            'description' => 'This is admin groups (contains teachers)',
+            'description' => 'This is admin group (contains teachers)',
         ]);
     }
 }
