@@ -1,7 +1,7 @@
 @extends('layouts.teacher')
 
 @section('title')
-    Thêm nhóm học sinh -
+    Thêm nhóm học sinh
 @endsection
 
 @section('nav-teacher-groups')

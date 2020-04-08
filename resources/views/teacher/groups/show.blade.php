@@ -1,7 +1,7 @@
 @extends('layouts.teacher')
 
 @section('title')
-    Nhóm {{ $group->name }} -
+    Nhóm {{ $group->name }}
 @endsection
 
 @section('extend-script')
