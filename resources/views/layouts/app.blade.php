@@ -23,7 +23,7 @@
     @yield('page-body')
 
     @yield('page-footer')
-    
+
     <!-- JavaScript files-->
     @yield('ui-script')
     @yield('extend-script')
