@@ -9,8 +9,13 @@ class Topic extends Model
     protected $table = 'topics';
 
     protected $fillable = [
-        'name', 'type_of_class', 'class', 'description'
+        'name', 'type_class_id', 'class', 'description'
     ];
+
+    public function type_class()
+    {
+        return $this->belongsTo('App\TypeClass');
+    }
 
     public function questions()
     {

@@ -14,8 +14,19 @@ class Question extends Model
     protected $table = 'questions';
 
     protected $fillable = [
-        'type_question', 'question', 'true_answer', 'solution', 'type_of_class', 'class', 'topic_id'
+        'type_question_id', 'question', 'true_answer', 'solution', 'type_class_id', 'class', 'topic_id'
     ];
+
+    public function type_question()
+    {
+        return $this->belongsTo('App\TypeQuestion');
+    }
+
+
+    public function type_class()
+    {
+        return $this->belongsTo('App\TypeClass');
+    }
 
     public function topic()
     {
