@@ -56,7 +56,7 @@
                                 <tbody>
                                     @foreach ($groups as $group)
                                         <tr>
-                                            <th scope="row">1</th>
+                                            <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $group->name }}</td>
                                             <td>Lớp {{ $group->class }}</td>
                                             <td>?</td>
