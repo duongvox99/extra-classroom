@@ -54,6 +54,7 @@ Route::middleware(['auth', 'is_teacher'])->name('teacher.')->prefix('teacher')->
         'exams' => 'ExamController',
         'notifications' => 'NotificationController',
         'topics' => 'TopicController',
+        'type_exams' => 'TypeExamController',
 
         'groups.users' => 'GroupUserController',
         'groups.notifications' => 'GroupNotificationController',

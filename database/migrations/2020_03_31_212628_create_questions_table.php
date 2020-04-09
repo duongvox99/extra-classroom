@@ -16,11 +16,11 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('type_question');
+            $table->foreignId('type_question_id')->constrained()->onDelete('cascade');
             $table->json('question');
             $table->integer('true_answer');
             $table->text('solution');
-            $table->integer('type_of_class')->nullable();
+            $table->foreignId('type_class_id')->constrained()->onDelete('cascade');
             $table->integer('class')->nullable();
 
             $table->foreignId('topic_id')->constrained()->onDelete('cascade');
