@@ -15,6 +15,7 @@
     <title>@yield('title') | {{ config('app.name') }} - {{ config('app.subtitle')}}</title>
 
     @yield('head-script')
+    @yield('extent-style')
 </head>
 <body>
     <!-- Header -->
