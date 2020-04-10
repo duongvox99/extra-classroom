@@ -33,7 +33,6 @@ Login
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
     <style>
         body {
-            background-color: #80ff72;
             background-image: linear-gradient(315deg, #7ee8fa 0%, #80ff72 74%);
             background-image: url('{{ asset('img/background.jpg') }}');
             background-position: center;
