@@ -70,6 +70,33 @@ class QuestionController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showCreateFromImport()
+    {
+        return view('teacher.questions.import');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeFromImport(Request $request)
+    {
+        $validator = $request->validate([
+            'name' => 'required|unique:groups|max:255',
+            'class' => 'required',
+        ], $this->customMessages);
+
+        Question::create($request->all());
+
+        return redirect()->route('teacher.questions.index')->with('isStored', true);
+    }
+    /**
      * Display the specified resource.
      *
      * @param  \App\Question  $question

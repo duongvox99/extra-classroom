@@ -54,7 +54,7 @@
                         "emptyTable":     "Không tìm thấy dữ liệu",
                         "info":           "Có _TOTAL_ câu hỏi trong trang hiện tại",
                         "infoEmpty":      "Số câu hỏi trong trang hiện tại: 0",
-                        "search":         "Tìm kiếm theo  nội dung câu hỏi:",
+                        "search":         "Tìm kiếm câu hỏi:",
                         "zeroRecords":    "Không tìm thấy kết quả nào",
                         "infoFiltered":   "(đã lọc kết quả tìm kiếm từ _MAX_ câu hỏi)",
                     },
@@ -119,9 +119,19 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h2 class="text-primary mb-0">Danh sách câu hỏi - Trang {{ $currentPage }}</h2>
-                            <a href="{{ route('teacher.questions.create') }}" class="btn btn-primary">
-                                <i class="fas fa-plus-circle"></i> Thêm câu hỏi
-                            </a>
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-plus-circle"></i> Thêm câu hỏi
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a href="{{ route('teacher.questions.create') }}" class="dropdown-item">
+                                        Nhập bằng tay
+                                    </a>
+                                    <a href="{{ route('teacher.import_from_docx') }}" class="dropdown-item">
+                                        Tự nhập từ file docx
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <table id="question-table" class="table card-text hover" style="width: 100%; overflow-x:auto;">
