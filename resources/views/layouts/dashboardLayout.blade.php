@@ -4,7 +4,7 @@
   Trung tâm điều khiển
 @endsection
 
-@section('head-script')
+@section('head-stylesheet')
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
@@ -18,15 +18,15 @@
     <!-- Custom stylesheet -->
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
-    <!-- Jquery-confirm -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.css">
     <!-- Favicon-->
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+      
+    @yield('head-custom-stylesheet')
 @endsection
 
-@section('page-header')
+@section('section-header')
     <header class="header">
       <nav class="navbar navbar-expand-lg px-4 py-2 bg-white shadow">
             <a href="#" class="sidebar-toggler text-gray-500 mr-4 mr-lg-5 lead">
@@ -61,21 +61,7 @@
     </header>
 @endsection
 
-@section('page-body')
-    <div class="d-flex align-items-stretch">
-      <!-- Sidebar -->
-      @yield('sidebar-items')
-
-      <!-- Content Wrapper -->
-      <div class="page-holder w-100 d-flex flex-wrap">
-        <div class="container-fluid px-xl-5">
-          @yield('content')
-        </div>
-      </div>
-    </div>
-@endsection
-
-@section('page-footer')
+@section('section-footer')
   <footer class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
     <div class="container-fluid">
       <div class="row">
@@ -92,13 +78,37 @@
   </footer>
 @endsection
 
-@section('ui-script')
+@section('body-layout')
+
+    @yield('section-header')
+
+    <div class="d-flex align-items-stretch">
+      
+      @yield('section-sidebar')
+
+      <!-- Content Wrapper -->
+      <div class="page-holder w-100 d-flex flex-wrap">
+        <div class="container-fluid px-xl-5">
+
+          @yield('section-content')
+          
+        </div>
+      </div>
+    </div>
+
+    @yield('section-footer')
+@endsection
+
+@section('body-scripts')
+    <!-- Jquery-confirm -->
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendor/popper.js/umd/popper.min.js') }}"> </script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendor/popper.js/umd/popper.min.js') }}"> </script>
     <script src="{{ asset('vendor/jquery.cookie/jquery.cookie.js') }}"> </script>
     <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script src="{{ asset('js/charts-home.js') }}"></script>
     <script src="{{ asset('js/front.js') }}"></script>
+
+    @yield('body-custom-scripts')
 @endsection

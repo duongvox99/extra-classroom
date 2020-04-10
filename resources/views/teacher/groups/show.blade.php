@@ -26,11 +26,7 @@
     @endif
 @endsection
 
-@section('nav-teacher-groups')
-    style="background-color: green;"
-@endsection
-
-@section('content')
+@section('section-content')
     <div class="page-header zvn-page-header clearfix">
         <div class="zvn-page-header-title">
             <h2>{{ $group->name }}</h2>

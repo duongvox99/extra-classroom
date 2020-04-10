@@ -4,13 +4,10 @@
 Login
 @endsection
 
-@section('head-script')
+@section('head-stylesheet')
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
 
     <!-- Themes template -->
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
@@ -28,9 +25,20 @@ Login
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    
+    <style>
+        body {
+            background-image: linear-gradient(315deg, #7ee8fa 0%, #80ff72 74%);
+            background-image: url('{{ asset('img/background.jpg') }}');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+@endsection
 
-    <!-- Old project scripts -->
-    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
+@section('head-custom-stylesheet')
     <style>
         body {
             background-image: linear-gradient(315deg, #7ee8fa 0%, #80ff72 74%);
@@ -50,7 +58,7 @@ Login
     </style>
 @endsection
 
-@section('page-body')
+@section('body-layout')
 <div class="page-holder container-fluid d-flex align-items-center justify-content-center">
     <div class="row">
         <div class="col">
@@ -118,26 +126,22 @@ Login
 </div>
 @endsection
 
-@section('ui-script')
+@section('body-scripts')
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendor/popper.js/umd/popper.min.js') }}"> </script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('vendor/jquery.cookie/jquery.cookie.js') }}"> </script>
-    <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-    <script src="{{ asset('js/front.js') }}"></script>
 
     <script>
     // Hàm này là hiệu ứng cho case input sai
     // Mày làm validate trên server nên tao chưa chèn vào được.
     // Mày thử cách nào thêm vào cho đẹp nhá
     function doErrorAnimate() {
-        $('#card-login').removeClass()
-                        .addClass('card animated shake faster delay-1s')
-                        .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
-                            function(){
-                                $(this).removeClass().addClass('card animated'); 
-                            });
+        $('#card-login')
+            .removeClass()
+            .addClass('card animated shake faster delay-1s')
+            .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+                function(){
+                    $(this).removeClass().addClass('card animated'); 
+                });
     };
     </script>
 @endsection

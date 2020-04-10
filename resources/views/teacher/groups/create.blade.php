@@ -4,7 +4,7 @@
     Thêm nhóm học sinh
 @endsection
 
-@section('content')
+@section('section-content')
     <section class="py-5">
         <div class="row justify-content-center">
             <div class="col-md-5">

@@ -4,7 +4,12 @@
     Danh sách nhóm học sinh
 @endsection
 
-@section('content')
+@section('head-custom-stylesheet')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.css">
+@endsection
+
+
+@section('section-content')
     @include('teacher.statusBand')
 
     <section class="pb-5">
@@ -34,7 +39,7 @@
                                             <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $group->name }}</td>
                                             <td>Lớp {{ $group->class }}</td>
-                                            <td>?</td>
+                                            <td>help{{-- (count($group->users())) --}}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -86,7 +91,7 @@
     </section>
 @endsection
 
-@section('extend-script')
+@section('body-custom-scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js" integrity="sha256-Ka8obxsHNCz6H9hRpl8X4QV3XmhxWyqBpk/EpHYyj9k=" crossorigin="anonymous"></script>
     <script src="{{ asset('js/NotifyFunctions.js') }}"></script>
 
