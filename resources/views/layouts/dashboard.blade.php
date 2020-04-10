@@ -36,47 +36,6 @@
               {{ config('app.name') }} - @yield('role')
             </a>
         <ul class="ml-auto d-flex align-items-center list-unstyled mb-0">
-{{--          <li class="nav-item">--}}
-{{--            <form id="searchForm" class="ml-auto d-none d-lg-block">--}}
-{{--              <div class="form-group position-relative mb-0">--}}
-{{--                <button type="submit" style="top: -3px; left: 0;" class="position-absolute bg-white border-0 p-0"><i class="o-search-magnify-1 text-gray text-lg"></i></button>--}}
-{{--                <input type="search" placeholder="Search ..." class="form-control form-control-sm border-0 no-shadow pl-4">--}}
-{{--              </div>--}}
-{{--            </form>--}}
-{{--          </li>--}}
-{{--          <li class="nav-item dropdown mr-3">--}}
-{{--              <a id="notifications" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-gray-400 px-1">--}}
-{{--                <i class="fa fa-bell"></i>--}}
-{{--                <span class="notification-icon"></span>--}}
-{{--            </a>--}}
-{{--            <div aria-labelledby="notifications" class="dropdown-menu"><a href="#" class="dropdown-item">--}}
-{{--                <div class="d-flex align-items-center">--}}
-{{--                  <div class="icon icon-sm bg-violet text-white"><i class="fab fa-twitter"></i></div>--}}
-{{--                  <div class="text ml-2">--}}
-{{--                    <p class="mb-0">You have 2 followers</p>--}}
-{{--                  </div>--}}
-{{--                </div></a><a href="#" class="dropdown-item">--}}
-{{--                <div class="d-flex align-items-center">--}}
-{{--                  <div class="icon icon-sm bg-green text-white"><i class="fas fa-envelope"></i></div>--}}
-{{--                  <div class="text ml-2">--}}
-{{--                    <p class="mb-0">You have 6 new messages</p>--}}
-{{--                  </div>--}}
-{{--                </div></a><a href="#" class="dropdown-item">--}}
-{{--                <div class="d-flex align-items-center">--}}
-{{--                  <div class="icon icon-sm bg-blue text-white"><i class="fas fa-upload"></i></div>--}}
-{{--                  <div class="text ml-2">--}}
-{{--                    <p class="mb-0">Server rebooted</p>--}}
-{{--                  </div>--}}
-{{--                </div></a><a href="#" class="dropdown-item">--}}
-{{--                <div class="d-flex align-items-center">--}}
-{{--                  <div class="icon icon-sm bg-violet text-white"><i class="fab fa-twitter"></i></div>--}}
-{{--                  <div class="text ml-2">--}}
-{{--                    <p class="mb-0">You have 2 followers</p>--}}
-{{--                  </div>--}}
-{{--                </div></a>--}}
-{{--              <div class="dropdown-divider"></div><a href="#" class="dropdown-item text-center"><small class="font-weight-bold headings-font-family text-uppercase">View all notifications</small></a>--}}
-{{--            </div>--}}
-{{--          </li>--}}
           <li class="nav-item dropdown ml-auto">
               <a id="userInfo" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">
                 <img src="{{ empty(Auth::user()->avatar) ? asset('img/no-avatar.png') : Auth::user()->avatar }}"
@@ -107,27 +66,30 @@
       <!-- Sidebar -->
       @yield('sidebar-items')
 
-      <!-- Content -->
-      @yield('content')
+      <!-- Content Wrapper -->
+      <div class="page-holder w-100 d-flex flex-wrap">
+        <div class="container-fluid px-xl-5">
+          @yield('content')
+        </div>
+      </div>
     </div>
 @endsection
 
 @section('page-footer')
-
   <footer class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-6 text-center text-md-left text-primary">
-            <p class="mb-2 mb-md-0">
-            <span class="text-muted">Copyright © <b><a href="https://www.facebook.com/duongvox" target="_blank">noBUG Team</a></b></span>
-            </p>
-          </div>
-          <div class="col-md-6 text-center text-md-right text-gray-400 ">
-            <p class="mb-0">Template by <a href="https://bootstrapious.com/admin-templates" class="external text-gray-400">Bootstrapious</a></p>
-          </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 text-center text-md-left text-primary">
+          <p class="mb-2 mb-md-0">
+          <span class="text-muted">Copyright © <b><a href="https://www.facebook.com/duongvox" target="_blank">noBUG Team</a></b></span>
+          </p>
+        </div>
+        <div class="col-md-6 text-center text-md-right text-gray-400 ">
+          <p class="mb-0">Template by <a href="https://bootstrapious.com/admin-templates" class="external text-gray-400">Bootstrapious</a></p>
         </div>
       </div>
-    </footer>
+    </div>
+  </footer>
 @endsection
 
 @section('ui-script')
