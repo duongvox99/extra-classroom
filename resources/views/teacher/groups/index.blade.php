@@ -4,29 +4,6 @@
     Danh sách nhóm học sinh
 @endsection
 
-@section('extend-script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js" integrity="sha256-Ka8obxsHNCz6H9hRpl8X4QV3XmhxWyqBpk/EpHYyj9k=" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/NotifyFunctions.js') }}"></script>
-
-    @if (Session::has('isStored'))
-        <script type="text/javascript" defer>
-            addSuccessFunction("nhóm");
-        </script>
-    @endif
-
-    @if (Session::has('isUpdated'))
-        <script type="text/javascript" defer>
-            updateSucessFunction("nhóm");
-        </script>
-    @endif
-
-    @if (Session::has('isDestroyed'))
-        <script type="text/javascript" defer>
-            destroySucessFunction("nhóm");
-        </script>
-    @endif
-@endsection
-
 @section('content')
     @include('teacher.statusBand')
 
@@ -41,26 +18,30 @@
                         </a>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped card-text">
-                            <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Tên nhóm</th>
-                                    <th>Lớp</th>
-                                    <th>Số học viên</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($groups as $group)
+                        @if (count($groups))
+                            <table class="table table-striped card-text">
+                                <thead>
                                     <tr>
-                                        <th scope="row">{{ $loop->iteration }}</th>
-                                        <td>{{ $group->name }}</td>
-                                        <td>Lớp {{ $group->class }}</td>
-                                        <td>?</td>
+                                        <th>No.</th>
+                                        <th>Tên nhóm</th>
+                                        <th>Lớp</th>
+                                        <th>Số học viên</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($groups as $group)
+                                        <tr>
+                                            <th scope="row">{{ $loop->iteration }}</th>
+                                            <td>{{ $group->name }}</td>
+                                            <td>Lớp {{ $group->class }}</td>
+                                            <td>?</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @else
+                            <p class="card-text text-secondary text-center">Không có nhóm nào</p>
+                        @endif
                     </div>
             </div>
         </div>
@@ -103,4 +84,27 @@
             @endforeach
         </div>
     </section>
+@endsection
+
+@section('extend-script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js" integrity="sha256-Ka8obxsHNCz6H9hRpl8X4QV3XmhxWyqBpk/EpHYyj9k=" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/NotifyFunctions.js') }}"></script>
+
+    @if (Session::has('isStored'))
+        <script type="text/javascript" defer>
+            addSuccessFunction("nhóm");
+        </script>
+    @endif
+
+    @if (Session::has('isUpdated'))
+        <script type="text/javascript" defer>
+            updateSucessFunction("nhóm");
+        </script>
+    @endif
+
+    @if (Session::has('isDestroyed'))
+        <script type="text/javascript" defer>
+            destroySucessFunction("nhóm");
+        </script>
+    @endif
 @endsection
