@@ -1,6 +1,15 @@
 
-<script type="text/javascript" src="/ExtraClassroomWebsite/public/js/DeleteButton.js"></script>
+@extends('layouts.teacher')
 
+@section('title')
+    Danh sách học sinh
+@endsection
+
+@section('head-custom-stylesheet')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.css">
+@endsection
+
+@section('section-content')
 <div class="page-header zvn-page-header clearfix">
     <div class="zvn-page-header-title">
         <h3>Danh sách người dùng</h3>
@@ -148,3 +157,30 @@
 </div>
 <?php } ?>
 <!--end-box-pagination-->
+@endsection
+
+@section('body-custom-scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js" integrity="sha256-Ka8obxsHNCz6H9hRpl8X4QV3XmhxWyqBpk/EpHYyj9k=" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/NotifyFunctions.js') }}"></script>
+
+    @if (Session::has('isStored'))
+        <script type="text/javascript" defer>
+            addSuccessFunction("nhóm");
+        </script>
+    @endif
+
+    @if (Session::has('isUpdated'))
+        <script type="text/javascript" defer>
+            updateSucessFunction("nhóm");
+        </script>
+    @endif
+
+    @if (Session::has('isDestroyed'))
+        <script type="text/javascript" defer>
+            destroySucessFunction("nhóm");
+        </script>
+    @endif
+@endsection
+
+<script type="text/javascript" src="/ExtraClassroomWebsite/public/js/DeleteButton.js"></script>
+
