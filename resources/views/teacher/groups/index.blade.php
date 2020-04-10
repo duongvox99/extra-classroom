@@ -18,9 +18,14 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h2 class="text-primary mb-0">Danh sách nhóm</h2>
-                        <a href="{{ route('teacher.groups.create') }}" class="btn btn-primary">
-                            <i class="fas fa-plus-circle"></i> Tạo nhóm
-                        </a>
+                        <div class="row">
+                            <a href="{{ route('teacher.groups.create') }}" class="btn btn-primary">
+                                <i class="fas fa-plus-circle"></i> Quản lý
+                            </a>
+                            <a href="{{ route('teacher.groups.create') }}" class="btn btn-primary">
+                                <i class="fas fa-plus-circle"></i> Tạo nhóm
+                            </a>
+                        </div>
                     </div>
                     <div class="card-body">
                         @if (count($groups))
