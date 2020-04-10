@@ -39,7 +39,7 @@
           <li class="nav-item dropdown ml-auto">
               <a id="userInfo" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">
                 <img src="{{ empty(Auth::user()->avatar) ? asset('img/no-avatar.png') : Auth::user()->avatar }}"
-                    alt="Profile picture" style="max-width: 2.5rem;"
+                    alt="Profile picture" style="max-width: 2.5rem; min-height: 2.5rem;"
                     class="img-fluid rounded-circle shadow">
               </a>
             <div aria-labelledby="userInfo" class="dropdown-menu">
