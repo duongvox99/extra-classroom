@@ -1,9 +1,10 @@
 @extends('errors.errLayout')
 
 @section('errCode')
-404
+419
 @endsection
 
 @section('errMessage')
-TRANG KHÔNG TỒN TẠI
+TOKEN HẾT HẠN
 @endsection
+
