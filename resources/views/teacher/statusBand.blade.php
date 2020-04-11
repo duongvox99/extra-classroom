@@ -16,7 +16,7 @@
                 <div class="flex-grow-1 d-flex align-items-center">
                     <div class="dot mr-3 bg-green"></div>
                     <div class="text">
-                        <h6 class="mb-0">Tổng số nhóm</h6><span class="text-gray">32</span>
+                        <h6 class="mb-0">Tổng số nhóm</h6><span class="text-gray">{{ (count($groups)) }}</span>
                     </div>
                 </div>
                 <div class="icon text-white bg-green"><i class="fas fa-user-friends"></i></div>

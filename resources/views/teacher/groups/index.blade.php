@@ -11,53 +11,57 @@
 
 @section('section-content')
     @include('teacher.statusBand')
-
+    
     <section class="pb-5">
         <div class="row">
             <div class="col">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h2 class="text-primary mb-0">Danh sách nhóm</h2>
-                        <div class="row">
-                            <a href="{{ route('teacher.groups.create') }}" class="btn btn-primary">
-                                <i class="fas fa-plus-circle"></i> Quản lý
-                            </a>
-                            <a href="{{ route('teacher.groups.create') }}" class="btn btn-primary">
-                                <i class="fas fa-plus-circle"></i> Tạo nhóm
-                            </a>
-                        </div>
+                        <a href="{{ route('teacher.groups.create') }}" class="btn btn-primary">
+                            <i class="fas fa-plus-circle"></i> Tạo nhóm
+                        </a>
                     </div>
                     <div class="card-body">
-                        @if (count($groups))
-                            <table class="table table-striped card-text">
-                                <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>Tên nhóm</th>
-                                        <th>Lớp</th>
-                                        <th>Số học viên</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($groups as $group)
-                                        <tr>
-                                            <th scope="row">{{ $loop->iteration }}</th>
-                                            <td>{{ $group->name }}</td>
-                                            <td>Lớp {{ $group->class }}</td>
-                                            <td>help{{-- (count($group->users())) --}}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        @else
-                            <p class="card-text text-secondary text-center">Không có nhóm nào</p>
-                        @endif
+                        <div class="row">
+                            @foreach ($groups as $group)
+                                <div class="col-md-4 my-2">
+                                    <div class="card">
+                                        <div class="card-header p-3 bg-hover-gradient-primary">
+                                            <a href="{{ route('teacher.groups.show', $group->id) }}" class="message no-anchor-style">
+                                                <div class="row">
+                                                    <img src="https://picsum.photos/90/90" alt="..."
+                                                        style="min-width: 3.5rem; max-width: 3.5rem; min-height:3.5rem;"
+                                                        class="rounded-circle mx-3">
+                                                        
+                                                    <div class="ml-2">
+                                                        <div class="row d-flex align-items-center ">
+                                                            <div class="text-light smaller roundy px-3 py-1 mr-1 exclode
+                                                            @if ($group->class == 10) gradient-blue @elseif ($group->class == 11) gradient-violet @else gradient-red @endif">Lớp {{ $group->class }}</div>
+                                                            <strong class="h5 mb-0 py-1 text-gray-500">{{ $group->totalStudent }}<sup class="small text-gray font-weight-normal">hs</sup></strong>
+                                                        </div>
+                                                        <div class="row">
+                                                            <h4 class="mb-0 text-secondary">{{ $group->name }}</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="card-footer" style="min-height: 5.5rem;">
+                                        <p class="text-secondary">
+                                            Description
+                                        </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
             </div>
         </div>
     </section>
 
-    <section class="pb-5">
+    <!-- <section class="pb-5">
         <div class="row">
             @foreach ($groups as $group)
             <div class="col col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
@@ -93,7 +97,7 @@
             </div>
             @endforeach
         </div>
-    </section>
+    </section> -->
 @endsection
 
 @section('body-custom-scripts')
