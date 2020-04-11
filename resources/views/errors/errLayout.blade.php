@@ -4,7 +4,7 @@
 @yield('errCode') - @yield('errMessage')
 @endsection
 
-@section('head-script')
+@section('head-stylesheet')
     <style>
         html, body {
             height: 100%;
@@ -45,7 +45,7 @@
             }
             .error-page h1 + p {
             color: #d6d6d6;
-            font-size: 8vh;
+            font-size: 6vh;
             font-weight: bold;
             line-height: 10vh;
             max-width: 600px;
@@ -185,7 +185,7 @@
     </style>
 @endsection
 
-@section('page-body')
+@section('body-layout')
     <div class="error-page">
         <div>
             <h1 data-h1="@yield('errCode')">@yield('errCode')</h1>
