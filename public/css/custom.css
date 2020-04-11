@@ -17,3 +17,9 @@ h1, h2, h3, h4, h5, h6,
 
 .side-left { float: left; }
 .side-right { float: right; }
+
+hr.vertical {
+    display: inline;
+    border: none;
+    border-left: 1px solid rgb(222,226,230);
+}
