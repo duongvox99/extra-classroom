@@ -4,7 +4,7 @@
     Danh sách nhóm học sinh
 @endsection
 
-@section('extent-style')
+@section('head-custom-stylesheet')
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
     <style>
         .child-table {
@@ -17,100 +17,8 @@
     </style>
 @endsection
 
-@section('extend-script')
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/latest?tex-mml-chtml.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js" integrity="sha256-Ka8obxsHNCz6H9hRpl8X4QV3XmhxWyqBpk/EpHYyj9k=" crossorigin="anonymous"></script>
-
-    <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-
-        $(document).ready(function() {
-            /* Formatting function for row details */
-            function format ( d ) {
-                // `d` is the original data object for the row
-                return '<table class="child-table">' +
-                        '<tr>' +
-                            '<td>Đáp án:</td>' +
-                            '<td>' + d[7] + '</td>' +
-                        '</tr>' +
-                        '<tr>' +
-                            '<td>Chọn câu:</td>' +
-                            '<td>' + d[8] + '</td>' +
-                        '</tr>' +
-                        '<tr>' +
-                            '<td>Lời giải:</td>'+
-                            '<td>' + d[9] + '</td>'+
-                        '</tr>'+
-                    '</table>';
-            }
-
-            let table = $('#question-table').DataTable({
-                "language":
-                    {
-                        "emptyTable":     "Không tìm thấy dữ liệu",
-                        "info":           "Có _TOTAL_ câu hỏi trong trang hiện tại",
-                        "infoEmpty":      "Số câu hỏi trong trang hiện tại: 0",
-                        "search":         "Tìm kiếm câu hỏi:",
-                        "zeroRecords":    "Không tìm thấy kết quả nào",
-                        "infoFiltered":   "(đã lọc kết quả tìm kiếm từ _MAX_ câu hỏi)",
-                    },
-                "paging": false,
-                "order": [[ 0, "asc" ]],
-                "columnDefs": [ {
-                    "targets": 6,
-                    "orderable": false
-                    },
-                    {
-                        "targets": [ 7, 8, 9 ],
-                        "visible": false
-                    }]
-            });
-
-            // Add event listener for opening and closing details
-            $('#question-table tbody').on('click', 'tr', function () {
-                let tr = $(this).closest('tr');
-                let row = table.row( tr );
-
-                if ( row.child.isShown() ) {
-                    // This row is already open - close it
-                    row.child.hide();
-                    tr.removeClass('shown');
-                }
-                else {
-                    // Open this row
-                    row.child( format(row.data()) ).show();
-                    tr.addClass('shown');
-                }
-            } );
-        } );
-    </script>
-
-    <script src="{{ asset('js/NotifyFunctions.js') }}"></script>
-
-    @if (Session::has('isStored'))
-        <script type="text/javascript" defer>
-            addSuccessFunction("câu hỏi");
-        </script>
-    @endif
-
-    @if (Session::has('isUpdated'))
-        <script type="text/javascript" defer>
-            updateSucessFunction("câu hỏi");
-        </script>
-    @endif
-
-    @if (Session::has('isDestroyed'))
-        <script type="text/javascript" defer>
-            destroySucessFunction("câu hỏi");
-        </script>
-    @endif
-@endsection
-
-@section('content')
+@section('section-content')
     <section class="py-5">
         <div class="row">
             <div class="col">
@@ -210,4 +118,97 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('body-custom-scripts')
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/latest?tex-mml-chtml.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js" integrity="sha256-Ka8obxsHNCz6H9hRpl8X4QV3XmhxWyqBpk/EpHYyj9k=" crossorigin="anonymous"></script>
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
+        $(document).ready(function() {
+            /* Formatting function for row details */
+            function format ( d ) {
+                // `d` is the original data object for the row
+                return '<table class="child-table">' +
+                        '<tr>' +
+                            '<td>Đáp án:</td>' +
+                            '<td>' + d[7] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                            '<td>Chọn câu:</td>' +
+                            '<td>' + d[8] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                            '<td>Lời giải:</td>'+
+                            '<td>' + d[9] + '</td>'+
+                        '</tr>'+
+                    '</table>';
+            }
+
+            let table = $('#question-table').DataTable({
+                "language":
+                    {
+                        "emptyTable":     "Không tìm thấy dữ liệu",
+                        "info":           "Có _TOTAL_ câu hỏi trong trang hiện tại",
+                        "infoEmpty":      "Số câu hỏi trong trang hiện tại: 0",
+                        "search":         "Tìm kiếm câu hỏi:",
+                        "zeroRecords":    "Không tìm thấy kết quả nào",
+                        "infoFiltered":   "(đã lọc kết quả tìm kiếm từ _MAX_ câu hỏi)",
+                    },
+                "paging": false,
+                "order": [[ 0, "asc" ]],
+                "columnDefs": [ {
+                    "targets": 6,
+                    "orderable": false
+                    },
+                    {
+                        "targets": [ 7, 8, 9 ],
+                        "visible": false
+                    }]
+            });
+
+            // Add event listener for opening and closing details
+            $('#question-table tbody').on('click', 'tr', function () {
+                let tr = $(this).closest('tr');
+                let row = table.row( tr );
+
+                if ( row.child.isShown() ) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                }
+                else {
+                    // Open this row
+                    row.child( format(row.data()) ).show();
+                    tr.addClass('shown');
+                }
+            } );
+        } );
+    </script>
+
+    <script src="{{ asset('js/NotifyFunctions.js') }}"></script>
+
+    @if (Session::has('isStored'))
+        <script type="text/javascript" defer>
+            addSuccessFunction("câu hỏi");
+        </script>
+    @endif
+
+    @if (Session::has('isUpdated'))
+        <script type="text/javascript" defer>
+            updateSucessFunction("câu hỏi");
+        </script>
+    @endif
+
+    @if (Session::has('isDestroyed'))
+        <script type="text/javascript" defer>
+            destroySucessFunction("câu hỏi");
+        </script>
+    @endif
 @endsection
