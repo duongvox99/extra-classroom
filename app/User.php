@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'type_user', 'password', 'birthday', 'avatar', 'class', 'group_id'
+        'name', 'email', 'type_user', 'password', 'birthday', 'avatar', 'class'
     ];
 
     /**
@@ -37,23 +37,36 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function group()
+    /**
+     * to get current group of this user
+     */
+    public function currentGroup() //
     {
-        return $this->belongsTo('App\Group');
+        return $this->belongsToMany('App\Group', 'group_user')->wherePivot('is_active', '=', true);
     }
 
-    public function exam_scores()
+    public function examScore($exam_id)
     {
-        return $this->belongsToMany('App\Exam', 'scores')->withPivot('score');
+        return $this->belongsToMany('App\Exam', 'scores')->wherePivot('exam_id', '=', $exam_id)->withPivot('score');
     }
 
-    public function score()
+    public function examAnswers($exam_id)
     {
-        return $this->belongsToMany('App\Exam', 'scores')->withPivot('score')->sum('score');
+        return $this->belongsToMany('App\Exam', 'user_answer')->wherePivot('exam_id', '=', $exam_id)->withPivot('user_answer');
     }
 
-    public function answers($exam_id)
-    {
-        return $this->belongsToMany('App\Exam', 'user_answers')->wherePivot('exam_id', $exam_id)->withPivot('user_answer');
+    public function currentExams() {
+
     }
+
+    public function currentNotifications() {
+
+    }
+
+    public function totalExamScoreInGroup()
+    {
+//        need to code with other logic
+//        return $this->belongsToMany('App\Exam', 'scores')->withPivot('score')->sum('score');
+    }
+
 }

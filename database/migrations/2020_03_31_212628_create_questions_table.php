@@ -24,6 +24,8 @@ class CreateQuestionsTable extends Migration
             $table->integer('class')->nullable();
 
             $table->foreignId('topic_id')->constrained()->onDelete('cascade');
+
+            $table->string('note')->nullable();
         });
     }
 

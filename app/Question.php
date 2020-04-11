@@ -14,7 +14,7 @@ class Question extends Model
     protected $table = 'questions';
 
     protected $fillable = [
-        'type_question_id', 'question', 'true_answer', 'solution', 'type_class_id', 'class', 'topic_id'
+        'type_question_id', 'question', 'true_answer', 'solution', 'type_class_id', 'class', 'topic_id', 'note'
     ];
 
     public function type_question()
