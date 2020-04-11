@@ -14,19 +14,21 @@
 
     <title>@yield('title') | {{ config('app.name') }} - {{ config('app.subtitle')}}</title>
 
-    @yield('head-script')
-    @yield('extent-style')
+    @yield('head-stylesheet')
 </head>
 <body>
-    <!-- Header -->
-    @yield('page-header')
+    
+    <!-- Body layout/template -->
+    @yield('body-layout')
 
-    @yield('page-body')
-
-    @yield('page-footer')
+    <!--
+        Để tương thích với  code cũ/template
+        Nếu thấy chỗ nào còn để content, 
+        đổi lại thành "body-layout" / "section-content" phù hợp
+    -->
+    @yield('content')
 
     <!-- JavaScript files-->
-    @yield('ui-script')
-    @yield('extend-script')
+    @yield('body-scripts')
 </body>
 </html>

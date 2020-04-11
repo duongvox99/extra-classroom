@@ -4,30 +4,8 @@
     Danh sách nhóm học sinh
 @endsection
 
-@section('head-script')
-{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/2.5.1/jquery-confirm.min.js" integrity="sha256-tAQERQQw9PNRkWys5CowxwNM2Sw0hnZVpNstkq2jbgY=" crossorigin="anonymous"></script>--}}
-    <script src="{{ asset('js/NotifyFunctions.js') }}"></script>
 
-    @if (Session::has('isStored'))
-        <script type="text/javascript" defer>
-            addSuccessFunction("nhóm");
-        </script>
-    @endif
-
-    @if (Session::has('isUpdated'))
-        <script type="text/javascript" defer>
-            updateSucessFunction("nhóm");
-        </script>
-    @endif
-
-    @if (Session::has('isDestroyed'))
-        <script type="text/javascript" defer>
-            destroySucessFunction("nhóm");
-        </script>
-    @endif
-@endsection
-
-@section('content')
+@section('section-content')
 <div class="page-holder w-100 d-flex flex-wrap">
     <div class="container-fluid px-xl-5">
         @include('teacher.statusBand')
@@ -108,4 +86,31 @@
         </section>
     </div>
 </div>
+@endsection
+
+@section('head-custom-stylesheet')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.css">
+@endsection
+
+@section('body-custom-scripts')
+{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/2.5.1/jquery-confirm.min.js" integrity="sha256-tAQERQQw9PNRkWys5CowxwNM2Sw0hnZVpNstkq2jbgY=" crossorigin="anonymous"></script>--}}
+    <script src="{{ asset('js/NotifyFunctions.js') }}"></script>
+
+    @if (Session::has('isStored'))
+        <script type="text/javascript" defer>
+            addSuccessFunction("nhóm");
+        </script>
+    @endif
+
+    @if (Session::has('isUpdated'))
+        <script type="text/javascript" defer>
+            updateSucessFunction("nhóm");
+        </script>
+    @endif
+
+    @if (Session::has('isDestroyed'))
+        <script type="text/javascript" defer>
+            destroySucessFunction("nhóm");
+        </script>
+    @endif
 @endsection
