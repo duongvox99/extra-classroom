@@ -19,7 +19,7 @@ class Group extends Model
 
     public function users()
     {
-        return $this->hasMany('App\User');
+        return $this->belongsToMany('App\User', 'group_user')->withPivot('is_active');;
     }
 
     public function notifications()
