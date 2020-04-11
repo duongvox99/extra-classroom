@@ -29,6 +29,6 @@ class CreateUserReadNotificationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_notification');
+        Schema::dropIfExists('user_read_notification');
     }
 }
