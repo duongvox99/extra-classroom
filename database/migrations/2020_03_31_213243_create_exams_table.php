@@ -18,7 +18,6 @@ class CreateExamsTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->foreignId('type_exam_id')->constrained()->onDelete('cascade');
-            $table->boolean('is_show_solution');
             $table->foreignId('type_class_id')->constrained()->onDelete('cascade');
             $table->integer('class')->nullable();
             $table->json('number_questions');

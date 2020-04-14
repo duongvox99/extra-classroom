@@ -14,7 +14,7 @@ class Exam extends Model
     protected $table = 'exams';
 
     protected $fillable = [
-        'name', 'type_exam_id', 'is_show_solution', 'type_class_id', 'class', 'number_questions'
+        'name', 'type_exam_id', 'type_class_id', 'class', 'number_questions'
     ];
 
     public function type_exam()

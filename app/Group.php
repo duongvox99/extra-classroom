@@ -29,6 +29,6 @@ class Group extends Model
 
     public function exams()
     {
-        return $this->belongsToMany('App\Exam', 'exam_group')->withPivot('time_open', 'time_close');
+        return $this->belongsToMany('App\Exam', 'exam_group')->withPivot('number_of_submit', 'time_open', 'time_close', 'is_show_solution');
     }
 }
