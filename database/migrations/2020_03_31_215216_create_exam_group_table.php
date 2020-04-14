@@ -23,6 +23,7 @@ class CreateExamGroupTable extends Migration
             $table->integer('number_of_submit')->nullable();
             $table->timestamp('time_open')->default(now());
             $table->timestamp('time_close')->default(now());
+            $table->boolean('is_show_solution');
         });
     }
 

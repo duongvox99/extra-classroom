@@ -4,7 +4,9 @@
     Danh sách nhóm học sinh
 @endsection
 
+
 @section('head-custom-stylesheet')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
     <style>
         .child-table {
@@ -33,7 +35,7 @@
                                 <a href="{{ route('teacher.questions.create') }}" class="dropdown-item">
                                     Nhập bằng tay
                                 </a>
-                                <a href="{{ route('teacher.import_from_docx') }}" class="dropdown-item">
+                                <a href="{{ route('teacher.questions.import_from_docx') }}" class="dropdown-item">
                                     Tự nhập từ file docx
                                 </a>
                             </div>
@@ -53,6 +55,7 @@
                                     <th width="0%" style="display:none;">answer</th>
                                     <th width="0%" style="display:none;">true_answer</th>
                                     <th width="0%" style="display:none;">solution</th>
+                                    <th width="0%" style="display:none;">note</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,9 +94,10 @@
                                             </div>
                                         </td>
 
-                                        <td style="display:none;">{!! $question->answer !!}</td>
+                                        <td style="display:none;">{{ $question->answer }}</td>
                                         <td style="display:none;">{{ $question->true_answer }}</td>
                                         <td style="display:none;">{!! $question->solution !!}</td>
+                                        <td style="display:none;">{!! $question->note !!}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -121,12 +125,18 @@
 @endsection
 
 @section('body-custom-scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js" integrity="sha256-Ka8obxsHNCz6H9hRpl8X4QV3XmhxWyqBpk/EpHYyj9k=" crossorigin="anonymous"></script>
+
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
     <script type="text/javascript" id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/latest?tex-mml-chtml.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js" integrity="sha256-Ka8obxsHNCz6H9hRpl8X4QV3XmhxWyqBpk/EpHYyj9k=" crossorigin="anonymous"></script>
-
     <script>
+        function htmlDecode(input){
+            var e = document.createElement('div');
+            e.innerHTML = input;
+            return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+        }
+
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
@@ -134,19 +144,32 @@
         $(document).ready(function() {
             /* Formatting function for row details */
             function format ( d ) {
+                let answer = "";
+                console.log(JSON.parse(d[7]))
+                JSON.parse(d[7]).forEach(myFunction);
+                function myFunction(item, index) {
+                    answer += "<tr><td>" + (index + 1) + "</td><td>" + htmlDecode(item) + "</td></tr>";
+                }
+
+                let list_answer = { ...d[8] }
                 // `d` is the original data object for the row
                 return '<table class="child-table">' +
                         '<tr>' +
                             '<td>Đáp án:</td>' +
-                            '<td>' + d[7] + '</td>' +
                         '</tr>' +
+                            answer +
                         '<tr>' +
                             '<td>Chọn câu:</td>' +
                             '<td>' + d[8] + '</td>' +
+
                         '</tr>' +
                         '<tr>' +
                             '<td>Lời giải:</td>'+
                             '<td>' + d[9] + '</td>'+
+                        '</tr>'+
+                        '<tr>' +
+                            '<td>Ghi chú:</td>'+
+                            '<td>' + d[10] + '</td>'+
                         '</tr>'+
                     '</table>';
             }
@@ -197,6 +220,27 @@
     @if (Session::has('isStored'))
         <script type="text/javascript" defer>
             addSuccessFunction("câu hỏi");
+        </script>
+    @endif
+
+    @if (Session::has('isStoredFromDocxFile'))
+                <script type="text/javascript">
+            $.confirm({
+                theme: 'modern',
+                columnClass: 'medium',
+                title: 'Thêm câu hỏi từ file docx thành công',
+                content: 'Bạn có thể xem kết quả ở ngân hàng câu hỏi, chọn sắp xếp theo ghi chú!',
+                type: 'green',
+                typeAnimated: true,
+                buttons: {
+                    OK: {
+                        text: 'Đồng ý',
+                        btnClass: 'btn-green',
+                        action: function () {
+                        }
+                    }
+                },
+            });
         </script>
     @endif
 

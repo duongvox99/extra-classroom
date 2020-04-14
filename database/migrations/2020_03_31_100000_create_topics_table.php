@@ -18,7 +18,7 @@ class CreateTopicsTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->integer('class')->nullable();
-            $table->integer('description')->nullable();
+            $table->string('description')->nullable();
 
             $table->foreignId('type_class_id')->constrained()->onDelete('cascade');
         });

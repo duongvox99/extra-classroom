@@ -16,5 +16,10 @@
           </div>
       </div>
     </section>
-    
+
+@endsection
+
+@section('body-custom-scripts')
+    <script src="{{ asset('js/charts-home.js') }}"></script>
+    <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
 @endsection
