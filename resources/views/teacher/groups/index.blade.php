@@ -36,21 +36,31 @@
                                                         
                                                     <div class="ml-2">
                                                         <div class="row d-flex align-items-center ">
-                                                            <div class="text-light smaller roundy px-3 py-1 mr-1 exclode
-                                                            @if ($group->class == 10) gradient-blue @elseif ($group->class == 11) gradient-violet @else gradient-red @endif">Lớp {{ $group->class }}</div>
-                                                            <strong class="h5 mb-0 py-1 text-gray-500">{{ $group->totalStudent }}<sup class="small text-gray font-weight-normal">hs</sup></strong>
+                                                            <div class="text-light smaller roundy px-3 py-1 mr-1 exclode bg-gray-500">Lớp {{ $group->class }}</div>
+                                                            <strong class="h5 mb-0 py-1 text-gray-500 ">{{ $group->totalStudent }}<sup class="small text-gray font-weight-normal">hs</sup></strong>
                                                         </div>
                                                         <div class="row">
-                                                            <h4 class="mb-0 text-secondary">{{ $group->name }}</h4>
+                                                            <h4 class="mb-0 @if ($group->class == 10) text-primary @elseif ($group->class == 11) text-violet @else text-blue @endif">{{ $group->name }}</h4>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </a>
                                         </div>
-                                        <div class="card-footer" style="min-height: 5.5rem;">
-                                        <p class="text-secondary">
-                                            Description
-                                        </p>
+                                        <div class="card-body">
+                                            <p class="text-secondary">
+                                                Description
+                                            </p>
+                                        </div>
+                                        <div class="card-footer py-2 px-4 d-flex flex-row-reverse" style="">
+                                            <a class="pl-3 text-gray-500" href="{{ route('teacher.groups.show', $group->id) }}"><i class="far fa-eye fa-lg"></i></a>
+                                            <a class="pl-4 text-gray-500" href="{{ route('teacher.groups.edit', $group->id) }}"><i class="far fa-edit fa-lg"></i></a>
+                                            <a class="pl-3 text-gray-500"
+                                                href="{{ route('teacher.groups.destroy', $group->id) }}" 
+                                                onclick="return confirmDeleteFunction('delete-form');"><i class="far fa-trash-alt fa-lg"></i></a>
+                                                <form id="delete-form" action="{{ route('teacher.groups.destroy', $group->id) }}" method="POST"
+                                                    style="display: none;">
+                                                    @method('DELETE') @csrf
+                                                </form>
                                         </div>
                                     </div>
                                 </div>
@@ -60,44 +70,6 @@
             </div>
         </div>
     </section>
-
-    <!-- <section class="pb-5">
-        <div class="row">
-            @foreach ($groups as $group)
-            <div class="col col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
-                <div
-                    class="card h-100 @if ($group->class == 10) text-success border-success @elseif ($group->class == 11) text-warning border-warning @else text-danger border-danger @endif">
-                    <div class="card-header">
-                        <span class="badge badge-primary">Lớp {{ $group->class }}</span>
-                    </div>
-                    <div class="card-body">
-                        <h2 class="card-title">
-                            {{ $group->name }}
-                        </h2>
-                    </div>
-                    <div class="card-footer">
-                        <a class="btn btn-success" href="{{ route('teacher.groups.show', $group->id) }}">Chi tiết</a>
-
-                        <a href="{{ route('teacher.groups.destroy', $group->id) }}"
-                            class="deleteButton btn btn-danger float-right" style="margin-left: 10px;"
-                            onclick="return confirmDeleteFunction('delete-form');">
-                            <i class="fas fa-trash"></i>
-                        </a>
-
-                        <form id="delete-form" action="{{ route('teacher.groups.destroy', $group->id) }}" method="POST"
-                            style="display: none;">
-                            @method('DELETE') @csrf
-                        </form>
-
-                        <a href="{{ route('teacher.groups.edit', $group->id) }}" class="btn btn-secondary float-right">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </section> -->
 @endsection
 
 @section('body-custom-scripts')
