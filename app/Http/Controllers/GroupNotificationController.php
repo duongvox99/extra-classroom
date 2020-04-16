@@ -16,7 +16,7 @@ class GroupNotificationController extends Controller
      */
     public function index(Group $group)
     {
-        //
+        return redirect()->action('GroupNotificationController@create', $group);
     }
 
     /**
@@ -27,7 +27,7 @@ class GroupNotificationController extends Controller
      */
     public function create(Group $group)
     {
-        //
+        return view('teacher.groups.notifications.create');
     }
 
     /**

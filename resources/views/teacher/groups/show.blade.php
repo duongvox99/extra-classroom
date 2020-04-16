@@ -145,7 +145,7 @@
                         <h2 class="text-primary mb-0">Danh sách học sinh</h2>
                         <div class="row">
                             <a href="{{ route('teacher.groups.users.index', $group->id) }}" class="btn btn-primary">
-                                <i class="fas fa-plus-circle"></i> Xem
+                                <i class="fas fa-info-circle"></i>
                             </a>
                         </div>
                     </div>
