@@ -48,7 +48,7 @@
                                         </div>
                                         <div class="card-body">
                                             <p class="text-secondary">
-                                                Description
+                                                Ghi chú
                                             </p>
                                         </div>
                                         <div class="card-footer py-2 px-4 d-flex flex-row-reverse" style="">
@@ -67,6 +67,7 @@
                             @endforeach
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </section>

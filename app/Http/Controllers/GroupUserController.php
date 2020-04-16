@@ -16,7 +16,7 @@ class GroupUserController extends Controller
      */
     public function index(Group $group)
     {
-        //
+        return view('teacher.groups.users.index', compact('group'));
     }
 
     /**
