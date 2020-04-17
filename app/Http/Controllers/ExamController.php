@@ -14,7 +14,8 @@ class ExamController extends Controller
      */
     public function index()
     {
-        //
+        $exams = Exam::where('id', '>', 1)->get();
+        return view('teacher.exams.index', compact('exams'));
     }
 
     /**
