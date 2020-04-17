@@ -16,7 +16,7 @@ class GroupExamController extends Controller
      */
     public function index(Group $group)
     {
-        //
+        return redirect()->action('GroupExamController@create', $group);
     }
 
     /**
@@ -27,7 +27,7 @@ class GroupExamController extends Controller
      */
     public function create(Group $group)
     {
-        //
+        return view('teacher.groups.exams.create');
     }
 
     /**
