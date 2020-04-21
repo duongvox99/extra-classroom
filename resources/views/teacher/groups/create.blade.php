@@ -20,7 +20,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="name" class="h5 text-secondary">Tên nhóm</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Ví dụ: Đội tuyển chuyên Toán 12">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Ví dụ: Đội tuyển chuyên Toán 12" value="{{old('name')}}">
                                 @error('name')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -29,9 +29,9 @@
                             <div class="form-group">
                                 <label for="class" class="h5 text-secondary">Lớp</label>
                                 <select class="form-control" id="class" name="class">
-                                    <option>12</option>
-                                    <option>11</option>
-                                    <option>10</option>
+                                    <option @if (old('class') == 12) selected @endif>12</option>
+                                    <option @if (old('class') == 11) selected @endif>11</option>
+                                    <option @if (old('class') == 10) selected @endif>10</option>
                                 </select>
                             </div>
 

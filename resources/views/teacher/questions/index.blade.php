@@ -47,8 +47,8 @@
                                 <tr data-toggle="tooltip" title="Nhấn giữ phím Shift và chọn cột để sắp xếp theo nhiều cột">
                                     <th width="5%">STT</th>
                                     <th width="50%">Câu hỏi</th>
-                                    <th width="10%">Chủ đề</th>
                                     <th width="10%">Loại câu hỏi</th>
+                                    <th width="10%">Chủ đề</th>
                                     <th width="10%">Lớp</th>
                                     <th width="10%">Cập nhật lúc</th>
                                     <th width="5%"></th>
@@ -64,8 +64,8 @@
                                     <tr>
                                         <th scope="row">{{ $index += 1 }}</th>
                                         <td data-toggle="tooltip" title="Nhấn để xem các đáp án và lời giải">{!! $question->question !!}</td>
-                                        <td>{{ $question->topic_name }}</td>
                                         <td>{{ $question->type_question_name }}</td>
+                                        <td>{{ $question->topic_name }}</td>
                                         <td>{{ $question->type_class_name }} {{ $question->class }}</td>
                                         <td>{{ $question->question_updated_at }}</td>
 

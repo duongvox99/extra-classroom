@@ -4,10 +4,19 @@
     Thêm câu hỏi vào ngân hàng
 @endsection
 
+@section('head-custom-stylesheet')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+@endsection
+
 @section('body-custom-scripts')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/ckeditor.js')}}"></script>
 
     <script>
+        $(document).ready(function() {
+            $('#topicSelector').select2();
+        });
+
         ClassicEditor
             .create(document.querySelector('#editorQuestion'))
             .catch(error => {
@@ -38,6 +47,12 @@
             .catch(error => {
                 console.error(error);
             });
+        $('#editorQuestion').val("{!! old("question") !!}");
+        $('#editorAnswer1').val("{!! old("answer1") !!}");
+        $('#editorAnswer2').val("{!! old("answer2") !!}");
+        $('#editorAnswer3').val("{!! old("answer3") !!}");
+        $('#editorAnswer4').val("{!! old("answer3") !!}");
+        $('#editorSolution').val("{!! old("solution") !!}");
     </script>
 
 @endsection
@@ -59,8 +74,8 @@
 
                             <div class="form-group">
                                 <label for="editorQuestion" class="h5 text-secondary">Nội dung câu hỏi</label>
-                                <textarea class="form-control @error('name') is-invalid @enderror" name="question" id="editorQuestion"></textarea>
-                                @error('name')
+                                <textarea class="form-control @error('question') is-invalid @enderror" name="question" id="editorQuestion"></textarea>
+                                @error('question')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -97,10 +112,10 @@
                             <div class="form-group">
                                 <label for="trueAnswer" class="h5 text-secondary">Đáp án đúng</label>
                                 <select class="form-control" id="trueAnswer" name="trueAnswer">
-                                    <option value="1">Đáp án 1</option>
-                                    <option value="2">Đáp án 2</option>
-                                    <option value="3">Đáp án 3</option>
-                                    <option value="4">Đáp án 4</option>
+                                    <option value="1" @if (old('trueAnswer') == 1) selected @endif>Đáp án 1</option>
+                                    <option value="2" @if (old('trueAnswer') == 2) selected @endif>Đáp án 2</option>
+                                    <option value="3" @if (old('trueAnswer') == 3) selected @endif>Đáp án 3</option>
+                                    <option value="4" @if (old('trueAnswer') == 4) selected @endif>Đáp án 4</option>
                                 </select>
                             </div>
 
@@ -116,16 +131,16 @@
                                 <label for="typeQuestion" class="h5 text-secondary">Loại câu hỏi</label>
                                 <select class="form-control" id="typeQuestion" name="typeQuestion">
                                     @foreach( $typeQuestions as $typeQuestion )
-                                        <option value="{{$typeQuestion->id}}">{{$typeQuestion->name}}</option>
+                                        <option value="{{$typeQuestion->id}}" @if (old('typeQuestion') == $typeQuestion->id) selected @endif>{{$typeQuestion->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="topic" class="h5 text-secondary">Chủ đề câu hỏi</label>
-                                <select class="form-control" id="typeClass" name="topic">
+                                <select class="form-control" id="topicSelector" name="topic">
                                     @foreach( $topics as $topic )
-                                        <option value="{{$topic->topicId}}">{{$topic->topicName}} - {{$topic->typeClassName}} {{$topic->class}}</option>
+                                        <option value="{{$topic->topicId}}" @if (old('topic') == $topic->topicId) selected @endif>{{$topic->typeClassName}} {{$topic->class}} - {{$topic->topicName}}</option>
                                     @endforeach
                                 </select>
                             </div>

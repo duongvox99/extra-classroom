@@ -36,13 +36,6 @@
                 </a>
             </li>
             <li class="sidebar-list-item">
-                <a href="{{ route('teacher.type_exams.index') }}"
-                class="sidebar-link text-muted {{ request()->is('teacher/exams*') ? 'active' : '' }}">
-                    <i class="o-sales-up-1 mr-3 text-gray"></i>
-                    <span>Loại đề kiểm tra</span>
-                </a>
-            </li>
-            <li class="sidebar-list-item">
                 <a href="{{ route('teacher.topics.index') }}"
                     class="sidebar-link text-muted {{ request()->is('teacher/topics*') ? 'active' : '' }}">
                     <i class="o-survey-1 mr-3 text-gray"></i>
