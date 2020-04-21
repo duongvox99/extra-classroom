@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Login
+Đăng nhập
 @endsection
 
 @section('head-stylesheet')
@@ -17,7 +17,7 @@ Login
     <link rel="stylesheet" href="{{ asset('css/style.green.css') }}" id="theme-stylesheet">
     <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-    
+
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
@@ -25,7 +25,7 @@ Login
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-    
+
     <style>
         body {
             background-image: linear-gradient(315deg, #7ee8fa 0%, #80ff72 74%);
@@ -52,7 +52,7 @@ Login
             .deptrai {
                 -webkit-backdrop-filter: blur(10px);
                 backdrop-filter: blur(10px);
-                background-color: rgba(255, 255, 255, 0.5);  
+                background-color: rgba(255, 255, 255, 0.5);
             }
         }
     </style>
@@ -63,12 +63,12 @@ Login
     <div class="row">
         <div class="col">
             <div id="card-login" class="card animated flipInX">
-                <h2 class="card-header text-center text-primary"><small>{{ __('Login') }} |</small> Extra Classroom</h2>
+                <h2 class="card-header text-center text-primary"><small>Đăng nhập |</small> Extra Classroom</h2>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group">
-                            <input id="email" type="email" placeholder="{{ __('Email Address') }}"
+                            <input id="email" type="email" placeholder="Địa chỉ email"
                             class="form-control form-control-lg shadow @error('email') is-invalid @enderror"
                             name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
@@ -80,8 +80,8 @@ Login
                         </div>
 
                         <div class="form-group">
-                            <input id="password" type="password" placeholder="{{ __('Password') }}"
-                            class="form-control form-control-lg text-success shadow @error('password') is-invalid @enderror" 
+                            <input id="password" type="password" placeholder="Mật khẩu"
+                            class="form-control form-control-lg text-success shadow @error('password') is-invalid @enderror"
                             name="password" required autocomplete="current-password">
 
                             @error('password')
@@ -91,32 +91,26 @@ Login
                             @enderror
                         </div>
 
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" name="remember" id="remember"
-                                class="custom-control-input" {{ old('remember') ? 'checked' : '' }}>
+{{--                        <div class="form-group">--}}
+{{--                            <div class="custom-control custom-checkbox">--}}
+{{--                                <input type="checkbox" name="remember" id="remember"--}}
+{{--                                class="custom-control-input" {{ old('remember') ? 'checked' : '' }}>--}}
 
-                                <label class="custom-control-label" for="remember">
-                                    {{ __('Remember me') }}
-                                </label>
-                            </div>
-                        </div>
+{{--                                <label class="custom-control-label" for="remember">--}}
+{{--                                    {{ __('Remember me') }}--}}
+{{--                                </label>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                        <div class="form-group">
+                        <div class="form-group pt-2">
                             <button type="submit" class="btn btn-lg btn-primary">
-                                {{ __('Login') }}
+                                Đăng nhập
                             </button>
 
                             <a href="{{ route('password.request') }} " class="btn btn-lg btn-outline-secondary" >
-                                {{ __('What is my password?') }}
+                                Quên mật khẩu
                             </a>
 
-                            <!-- cái gì đây méo hiểu :v -->
-                            <!-- @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                            @endif -->
                         </div>
                     </form>
                 </div>
@@ -140,7 +134,7 @@ Login
             .addClass('card animated shake faster delay-1s')
             .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
                 function(){
-                    $(this).removeClass().addClass('card animated'); 
+                    $(this).removeClass().addClass('card animated');
                 });
     };
     </script>

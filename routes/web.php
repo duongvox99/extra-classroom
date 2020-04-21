@@ -52,6 +52,9 @@ Route::middleware(['auth', 'is_teacher'])->name('teacher.')->prefix('teacher')->
     Route::get('questions/import', 'QuestionController@showCreateFromImport')->name('questions.import_from_docx');
     Route::post('questions/import', 'QuestionController@storeFromImport')->name('questions.store_import_from_docx');
 
+    Route::get('exams/create_custom_by_topic', 'ExamController@createCustomByTopic')->name('exams.create_custom_by_topic');
+    Route::post('exams/store_custom_by_topic', 'ExamController@storeCustomByTopic')->name('exams.store_custom_by_topic');
+
     Route::get('/', 'TeacherController@teacherDashboard')->name('dashboard');
     Route::resources([
         'groups' => 'GroupController',
@@ -60,7 +63,6 @@ Route::middleware(['auth', 'is_teacher'])->name('teacher.')->prefix('teacher')->
         'exams' => 'ExamController',
         'notifications' => 'NotificationController',
         'topics' => 'TopicController',
-        'type_exams' => 'TypeExamController',
 
         'groups.users' => 'GroupUserController',
         'groups.notifications' => 'GroupNotificationController',

@@ -18,7 +18,7 @@ class QuestionController extends Controller
     private $listImgSrc;
 
     private $customMessages = [
-        'name.required' => 'Nội dung câu hỏi không được rỗng',
+        'question.required' => 'Nội dung câu hỏi không được rỗng',
         'answer1.required'  => 'Đáp án 1 không được rỗng',
         'answer2.required'  => 'Đáp án 2 không được rỗng',
         'answer3.required'  => 'Đáp án 3 không được rỗng',
@@ -50,7 +50,7 @@ class QuestionController extends Controller
                 'topics.name as topic_name',
                 'type_questions.name as type_question_name',
                 'type_classes.name as type_class_name'])
-            ->orderBy('questions.created_at', 'desc')
+            ->orderBy('questions.updated_at', 'desc')
             ->simplePaginate(20);
 
         $currentPage = $questions->currentPage();
@@ -68,7 +68,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        $typeQuestions = TypeQuestion::all();
+        $typeQuestions = TypeQuestion::all(['id', 'name']);
         $topics = DB::table('topics')
             ->join('type_classes', 'type_classes.id', '=', 'topics.type_class_id')
             ->select([
@@ -76,7 +76,9 @@ class QuestionController extends Controller
                 'topics.name as topicName',
                 'topics.class',
                 'type_classes.name as typeClassName'])
+            ->orderBy('type_classes.name', 'desc')
             ->orderBy('topics.class', 'desc')
+            ->orderBy('topics.name', 'asc')
             ->get();
 
         return view('teacher.questions.create', compact(['topics', 'typeQuestions']));

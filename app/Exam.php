@@ -14,18 +14,8 @@ class Exam extends Model
     protected $table = 'exams';
 
     protected $fillable = [
-        'name', 'type_exam_id', 'type_class_id', 'class', 'number_questions'
+        'name', 'time_limit', 'list_class', 'number_questions'
     ];
-
-    public function type_exam()
-    {
-        return $this->belongsTo('App\TypeExam');
-    }
-
-    public function type_class()
-    {
-        return $this->belongsTo('App\TypeClass');
-    }
 
     public function questions()
     {
