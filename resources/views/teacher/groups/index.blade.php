@@ -23,49 +23,53 @@
                         </a>
                     </div>
                     <div class="card-body">
-                        <div class="row">
-                            @foreach ($groups as $group)
-                                <div class="col-md-4 my-2">
-                                    <div class="card">
-                                        <div class="card-header p-3 bg-hover-gradient-primary">
-                                            <a href="{{ route('teacher.groups.show', $group->id) }}" class="message no-anchor-style">
-                                                <div class="row">
-                                                    <img src="https://picsum.photos/90/90" alt="..."
-                                                        style="min-width: 3.5rem; max-width: 3.5rem; min-height:3.5rem;"
-                                                        class="rounded-circle mx-3">
-                                                        
-                                                    <div class="ml-2">
-                                                        <div class="row d-flex align-items-center ">
-                                                            <div class="text-light smaller roundy px-3 py-1 mr-1 exclode bg-gray-500">Lớp {{ $group->class }}</div>
-                                                            <strong class="h5 mb-0 py-1 text-gray-500 ">{{ $group->totalStudent }}<sup class="small text-gray font-weight-normal">hs</sup></strong>
-                                                        </div>
+                            @if (count($groups))
+                                <div class="row">
+                                    @foreach ($groups as $group)
+                                        <div class="col-md-4 my-2">
+                                            <div class="card">
+                                                <div class="card-header p-3 bg-hover-gradient-primary">
+                                                    <a href="{{ route('teacher.groups.show', $group->id) }}" class="message no-anchor-style">
                                                         <div class="row">
-                                                            <h4 class="mb-0 @if ($group->class == 10) text-primary @elseif ($group->class == 11) text-violet @else text-blue @endif">{{ $group->name }}</h4>
+                                                            <img src="https://picsum.photos/90/90" alt="..."
+                                                                style="min-width: 3.5rem; max-width: 3.5rem; min-height:3.5rem;"
+                                                                class="rounded-circle mx-3">
+                                                                
+                                                            <div class="ml-2">
+                                                                <div class="row d-flex align-items-center ">
+                                                                    <div class="text-light smaller roundy px-3 py-1 mr-1 exclode bg-gray-500">Lớp {{ $group->class }}</div>
+                                                                    <strong class="h5 mb-0 py-1 text-gray-500 ">{{ $group->totalStudent }}<sup class="small text-gray font-weight-normal">hs</sup></strong>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <h4 class="mb-0 @if ($group->class == 10) text-primary @elseif ($group->class == 11) text-violet @else text-blue @endif">{{ $group->name }}</h4>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    </a>
                                                 </div>
-                                            </a>
+                                                <div class="card-body">
+                                                    <p class="text-secondary">
+                                                        Ghi chú
+                                                    </p>
+                                                </div>
+                                                <div class="card-footer py-2 px-4 d-flex flex-row-reverse" style="">
+                                                    <a class="pl-3 text-gray-500" href="{{ route('teacher.groups.show', $group->id) }}"><i class="far fa-eye fa-lg"></i></a>
+                                                    <a class="pl-4 text-gray-500" href="{{ route('teacher.groups.edit', $group->id) }}"><i class="far fa-edit fa-lg"></i></a>
+                                                    <a class="pl-3 text-gray-500"
+                                                        href="{{ route('teacher.groups.destroy', $group->id) }}" 
+                                                        onclick="return confirmDeleteFunction('delete-form');"><i class="far fa-trash-alt fa-lg"></i></a>
+                                                        <form id="delete-form" action="{{ route('teacher.groups.destroy', $group->id) }}" method="POST"
+                                                            style="display: none;">
+                                                            @method('DELETE') @csrf
+                                                        </form>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="card-body">
-                                            <p class="text-secondary">
-                                                Ghi chú
-                                            </p>
-                                        </div>
-                                        <div class="card-footer py-2 px-4 d-flex flex-row-reverse" style="">
-                                            <a class="pl-3 text-gray-500" href="{{ route('teacher.groups.show', $group->id) }}"><i class="far fa-eye fa-lg"></i></a>
-                                            <a class="pl-4 text-gray-500" href="{{ route('teacher.groups.edit', $group->id) }}"><i class="far fa-edit fa-lg"></i></a>
-                                            <a class="pl-3 text-gray-500"
-                                                href="{{ route('teacher.groups.destroy', $group->id) }}" 
-                                                onclick="return confirmDeleteFunction('delete-form');"><i class="far fa-trash-alt fa-lg"></i></a>
-                                                <form id="delete-form" action="{{ route('teacher.groups.destroy', $group->id) }}" method="POST"
-                                                    style="display: none;">
-                                                    @method('DELETE') @csrf
-                                                </form>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
-                            @endforeach
-                        </div>
+                            @else
+                                <p class="card-text text-secondary text-center">Nhóm chưa có học sinh</p>
+                            @endif
                     </div>
                 </div>
             </div>
