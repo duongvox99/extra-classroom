@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class TopicController extends Controller
 {
+    private $customMessages = [
+            'name.required' => 'Tên không được rỗng',
+            'class.required'  => 'Lớp không được rỗng',
+            'name.unique' => 'Tên đã tồn tại',
+            'name.max' => 'Tên phải ít hơn 255 ký tự'
+        ];
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +22,7 @@ class TopicController extends Controller
     public function index()
     {
         $topics = Topic::where('id', '>', 1)->get();
-        return view('teacher.topics.index', compact($topics));
+        return view('teacher.topics.index', compact('topics'));
     }
 
     /**
@@ -25,7 +32,7 @@ class TopicController extends Controller
      */
     public function create()
     {
-        //
+        return view('teacher.topics.create');
     }
 
     /**
@@ -36,7 +43,14 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = $request->validate([
+            'name' => 'required|unique:topics|max:255',
+            'class' => 'required',
+        ], $this->customMessages);
+
+        Topic::create($request->all());
+
+        return redirect()->route('teacher.topics.index')->with('isStored', true);
     }
 
     /**
@@ -58,7 +72,11 @@ class TopicController extends Controller
      */
     public function edit(Topic $topic)
     {
-        //
+        if ($topic->id == 1)
+        {
+            abort(404);
+        }
+        return view('teacher.topics.edit', compact('topic'));
     }
 
     /**
@@ -70,7 +88,13 @@ class TopicController extends Controller
      */
     public function update(Request $request, Topic $topic)
     {
-        //
+        $validator = $request->validate([
+            'name' => 'required|max:255',
+            'class' => 'required',
+        ], $this->customMessages);
+        $topic->update($request->all());
+
+        return redirect()->route('teacher.topics.index')->with('isUpdated', true);
     }
 
     /**
@@ -81,6 +105,8 @@ class TopicController extends Controller
      */
     public function destroy(Topic $topic)
     {
-        //
+        $topic->delete();
+
+        return redirect()->route('teacher.topics.index')->with('isDestroyed', true);
     }
 }
