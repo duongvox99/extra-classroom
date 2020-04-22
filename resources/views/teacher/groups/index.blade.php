@@ -27,7 +27,7 @@
                                 <div class="row">
                                     @foreach ($groups as $group)
                                         <div class="col-md-4 my-2">
-                                            <div class="card">
+                                            <div class="card h-100">
                                                 <div class="card-header p-3 bg-hover-gradient-primary">
                                                     <a href="{{ route('teacher.groups.show', $group->id) }}" class="message no-anchor-style">
                                                         <div class="row">
