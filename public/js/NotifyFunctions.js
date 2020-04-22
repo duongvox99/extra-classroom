@@ -5,22 +5,22 @@ function confirmDeleteFunction (idDeleteForm) {
         theme: 'modern',
         title: 'Bạn có thực sự muốn xoá hay không?',
         content: 'Lưu ý: Nếu đồng ý thì thao tác xoá này không thể khôi phục được!',
-        autoClose: 'cancel|5000',
+        autoClose: 'cancel|10000',
         type: 'orange',
         typeAnimated: true,
         columnClass: 'medium',
         buttons: {
-            ok: {
-                text: 'Đồng ý',
-                btnClass: 'btn-dark',
-                action: function () {
-                    document.getElementById(idDeleteForm).submit();
-                }
-            },
             cancel: {
                 text: 'Huỷ bỏ',
                 btnClass: 'btn-orange',
                 action: function () {
+                }
+            },
+            ok: {
+                text: 'Đồng ý',
+                btnClass: 'btn-secondary',
+                action: function () {
+                    document.getElementById(idDeleteForm).submit();
                 }
             }
         },

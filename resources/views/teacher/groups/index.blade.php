@@ -48,8 +48,8 @@
                                                     </a>
                                                 </div>
                                                 <div class="card-body">
-                                                    <p class="text-secondary">
-                                                        Ghi chú
+                                                    <p class="text-secondary m-0">
+                                                        {{ $group->description ?? "Chưa có ghi chú" }}
                                                     </p>
                                                 </div>
                                                 <div class="card-footer py-2 px-4 d-flex flex-row-reverse" style="">
