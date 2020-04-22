@@ -23,7 +23,7 @@
                         </a>
                     </div>
                     <div class="card-body">
-                            @if (count($groups))
+                            @if (count($groups ?? []))
                                 <div class="row">
                                     @foreach ($groups as $group)
                                         <div class="col-md-4 my-2">

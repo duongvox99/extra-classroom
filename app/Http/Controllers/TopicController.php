@@ -14,7 +14,8 @@ class TopicController extends Controller
      */
     public function index()
     {
-        //
+        $topics = Topic::where('id', '>', 1)->get();
+        return view('teacher.topics.index', compact($topics));
     }
 
     /**
