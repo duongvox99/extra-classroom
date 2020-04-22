@@ -23,11 +23,11 @@
                                 <i class="fas fa-plus-circle"></i> Tạo đề kiểm tra mới
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a href="{{ route('teacher.exams.create') }}" class="dropdown-item">
-                                    Tổng hợp theo chủ đề
-                                </a>
                                 <a href="{{ route('teacher.exams.create_custom_by_topic') }}" class="dropdown-item">
-                                    Tùy chỉnh theo chủ đề
+                                    Đề thi/kiểm tra thường
+                                </a>
+                                <a href="{{ route('teacher.exams.create') }}" class="dropdown-item">
+                                    Đề thi (THPT) tổng hợp
                                 </a>
                             </div>
                         </div>

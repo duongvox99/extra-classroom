@@ -15,32 +15,48 @@
 @section('section-content')
     <section class="py-5">
         <div class="row justify-content-center">
-            <div class="col-lg-5 col-md-5 col-sm-12">
+            <div class="col-md-10 col-lg-8">
                 <div class="card mt-1">
                     <div class="card-header">
                         <a href="{{ url()->previous() }}" class="h2 text-decoration-none text-primary">
                             <i class="fas fa-angle-left"></i>
-                            <span> Tạo đề kiểm tra tổng hợp mới</span>
+                            <span> Tạo đề kiểm tra tổng hợp</span>
                         </a>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('teacher.exams.store') }}" method="POST">
                             @csrf
 
-                            <div class="form-group">
-                                <label for="name" class="h5 text-secondary">Tên đề kiểm tra</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Ví dụ: Đề thi thử lần 1 lớp 12 năm 2018-2019" value="{{ old('name') }}">
-                                @error('name')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-7">
+                                    <label for="name" class="h5 text-secondary">Tên đề kiểm tra</label>
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Ví dụ: Đề thi thử lần 1 lớp 12 năm 2018-2019" value="{{ old('name') }}">
+                                    @error('name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
 
-                            <div class="form-group">
-                                <label for="timeLimit" class="h5 text-secondary">Thời gian làm bài (tính theo phút)</label>
-                                <input type="number" class="form-control @error('timeLimit') is-invalid @enderror" id="timeLimit" name="timeLimit" placeholder="Ví dụ: 120" min="1" value="{{ old('timeLimit') }}">
-                                @error('timeLimit')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
+                                <div class="col-md-5 pl-0">
+                                    <label for="timeLimit" class="h5 text-secondary">Thời gian làm bài (phút)</label>
+                                    <input type="number" name="timeLimit" id="timeLimit" placeholder="Ví dụ: 120"
+                                            value="{{ old('timeLimit') }}" min="5" step="5" list="datalistTimeLimit"
+                                            class="form-control @error('timeLimit') is-invalid @enderror">
+                                    <datalist id="datalistTimeLimit">
+                                        <option>5</option>
+                                        <option>15</option>
+                                        <option>20</option>
+                                        <option>30</option>
+                                        <option>40</option>
+                                        <option>45</option>
+                                        <option>60</option>
+                                        <option>90</option>
+                                        <option>120</option>
+                                    </datalist>
+                                    <!-- <input type="number" class="form-control @error('timeLimit') is-invalid @enderror" id="timeLimit" name="timeLimit" placeholder="Ví dụ: 120"  > -->
+                                    @error('timeLimit')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
 
                             @for ($class = 12; $class >= 10; $class--)

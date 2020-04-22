@@ -16,14 +16,14 @@
                         </a>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('teacher.groups.update', $group->id) }}" method="POST">
+                        <form action="{{ route('teacher.topics.update', $topic->id) }}" method="POST">
                             @method('PUT')
                             @csrf
                             <div class="form-group">
                                 <label for="name" class="h5 text-secondary">Tên nhóm</label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
                                     placeholder="Ví dụ: Đội tuyển chuyên Toán 12"
-                                    value="{{ $group->name }}">
+                                    value="{{ $topic->name }}">
                                 @error('name')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -32,17 +32,17 @@
                             <div class="form-group">
                                 <label for="class" class="h5 text-secondary">Lớp</label>
                                 <select class="form-control" id="class" name="class">
-                                    <option @if ($group->class == 12) selected @endif>12</option>
-                                    <option @if ($group->class == 11) selected @endif>11</option>
-                                    <option @if ($group->class == 10) selected @endif>10</option>
+                                    <option @if ($topic->class == 12) selected @endif>12</option>
+                                    <option @if ($topic->class == 11) selected @endif>11</option>
+                                    <option @if ($topic->class == 10) selected @endif>10</option>
                                 </select>
                             </div>
-
+                            
                             <div class="form-group">
-                                <label for="description" class="h5 text-secondary">Ghi chú</label>
+                                <label for="description" class="h5 text-secondary">Mô tả</label>
                                 <textarea name="description" id="description"
                                           row="5" maxlength="254" style="height:100px;"
-                                          class="form-control text-secondary p-3">{{ $group->description ?? "Chưa có ghi chú" }}</textarea>
+                                          class="form-control text-secondary p-3">{{ $topic->description ?? "Chưa có ghi chú" }}</textarea>
                             </div>
                             
                             <button name="btnSubmit" type="submit" class="btn btn-primary side-right">Xong</button>

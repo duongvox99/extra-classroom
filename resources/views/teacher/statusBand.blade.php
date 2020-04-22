@@ -16,7 +16,7 @@
                 <div class="flex-grow-1 d-flex align-items-center">
                     <div class="dot mr-3 bg-green"></div>
                     <div class="text">
-                        <h6 class="mb-0">Tổng số nhóm</h6><span class="text-gray">{{-- (count($groups)) --}}</span>
+                        <h6 class="mb-0">Tổng số nhóm</h6><span class="text-gray">12 {{-- (count($groups)) --}}</span>
                     </div>
                 </div>
                 <div class="icon text-white bg-green"><i class="fas fa-user-friends"></i></div>
@@ -38,7 +38,7 @@
                 <div class="flex-grow-1 d-flex align-items-center">
                     <div class="dot mr-3 bg-red"></div>
                     <div class="text">
-                        <h6 class="mb-0">New invoices</h6><span class="text-gray">123</span>
+                        <h6 class="mb-0">Ngày {{ date("d/m/Y" )}}</h6><span class="text-gray">{{ date("h:i a") }}</span>
                     </div>
                 </div>
                 <div class="icon text-white bg-red"><i class="fas fa-receipt"></i></div>

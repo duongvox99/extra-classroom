@@ -35,6 +35,13 @@
                                 </select>
                             </div>
 
+                            <div class="form-group">
+                                <label for="description" class="h5 text-secondary">Ghi chú</label>
+                                <textarea name="description" id="description"
+                                          row="5" maxlength="254" style="height:100px;"
+                                          class="form-control text-secondary p-3"></textarea>
+                            </div>
+
                             <button name="btnSubmit" type="submit" class="btn btn-primary side-right">Tạo nhóm</button>
                         </form>
                     </div>
