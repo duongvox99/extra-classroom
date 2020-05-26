@@ -25,37 +25,6 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-
-    <style>
-        body {
-            background-image: linear-gradient(315deg, #7ee8fa 0%, #80ff72 74%);
-            background-image: url('{{ asset('img/background.jpg') }}');
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
-        }
-    </style>
-@endsection
-
-@section('head-custom-stylesheet')
-    <style>
-        body {
-            background-image: linear-gradient(315deg, #7ee8fa 0%, #80ff72 74%);
-            background-image: url('{{ asset('img/background.jpg') }}');
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
-        }
-        @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-            .deptrai {
-                -webkit-backdrop-filter: blur(10px);
-                backdrop-filter: blur(10px);
-                background-color: rgba(255, 255, 255, 0.5);
-            }
-        }
-    </style>
 @endsection
 
 @section('body-layout')
