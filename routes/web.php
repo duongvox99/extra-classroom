@@ -46,8 +46,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'is_teacher'])->name('teacher.')->prefix('teacher')->group(function () {
-    Route::get('groups/{group_id}/users/mass_create', 'GroupUserController@showCreateMassUser')->where('group_id', '[0-9]+')->name('groups.users.mass_create_user');
-    Route::post('groups/{group_id}/users/mass_create', 'GroupUserController@createMassUser')->where('group_id', '[0-9]+')->name('groups.users.store_mass_create_user');
+    Route::get('users/mass_create', 'UserController@showCreateMassUser')->name('users.mass_create_user');
+    Route::post('users/mass_create', 'UserController@createMassUser')->name('users.store_mass_create_user');
 
     Route::get('questions/import', 'QuestionController@showCreateFromImport')->name('questions.import_from_docx');
     Route::post('questions/import', 'QuestionController@storeFromImport')->name('questions.store_import_from_docx');

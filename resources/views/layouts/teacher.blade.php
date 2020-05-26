@@ -1,7 +1,7 @@
 @extends('layouts.dashboardLayout')
 
 @section('role')
-    Teacher
+    Giáo viên
 @endsection
 
 @section('section-sidebar')

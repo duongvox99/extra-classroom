@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -21,7 +22,23 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = DB::table('users')
+            ->join('group_user', 'group_user.user_id', '=', 'users.id')
+            ->join('groups', 'groups.id', '=', 'group_user.group_id')
+            ->where('group_user.is_active', '=', true)
+            ->where('users.type_user', '<>', 0)
+            ->select([
+                'users.id as userId',
+                'users.avatar as userAvatar',
+                'users.name as userName',
+                'users.email as userEmail',
+                'users.birthday as userBirthday',
+                'users.class as userClass',
+                'users.updated_at as userUpdatedAt',
+                'groups.name as groupName'])
+            ->orderBy('users.updated_at', 'desc')
+            ->get();
+
         return view('teacher.users.index', compact('users'));
     }
 
@@ -99,6 +116,27 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
+    {
+        //
+    }
+
+    /**
+     * Show view to create mass user of groups.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showCreateMassUser()
+    {
+        //
+    }
+
+    /**
+     * Create mass user of groups.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function createMassUser(Request $request)
     {
         //
     }

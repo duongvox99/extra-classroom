@@ -33,7 +33,7 @@
               <i class="fas fa-align-left"></i>
             </a>
             <a href="/" class="navbar-brand font-weight-bold text-uppercase">
-              {{ config('app.name') }} - @yield('role')
+                Bảng điều khiển @yield('role')
             </a>
         <ul class="ml-auto d-flex align-items-center list-unstyled mb-0">
           <li class="nav-item dropdown ml-auto">
