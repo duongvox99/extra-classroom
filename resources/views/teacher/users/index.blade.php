@@ -1,186 +1,164 @@
-
 @extends('layouts.teacher')
 
 @section('title')
-    Danh sách học sinh
+    Danh sách tài khoản học sinh
 @endsection
 
 @section('head-custom-stylesheet')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+
+    <style>
+        .avatar{
+        /*    need to do */
+        }
+    </style>
 @endsection
 
 @section('section-content')
-<div class="page-header zvn-page-header clearfix">
-    <div class="zvn-page-header-title">
-        <h3>Danh sách người dùng</h3>
-    </div>
-    <div class="zvn-add-new pull-right">
-        <a href="/ExtraClassroomWebsite/GiaoVien/ThemNguoiDung/" class="btn btn-success"><i class="fas fa-plus-circle"></i> Thêm người dùng mới</a>
-    </div>
-</div>
-<?php if (isset($data["Category"])) { ?>
-<div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Bộ lọc</h2>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <div class="row">
-                    <div class="col-md-6"><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/TatCa/1" type="input" class="btn <?php echo ($data["Category"] == "TatCa") ? "btn-primary" : "btn-success"; ?>">
-                            Tất cả <span class="badge bg-danger"><?php echo ($data["Category"] == "TatCa") ? $data["TongSoNguoiDung"] : ""; ?></span>
-                        </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/QuanTriVien/1" type="input" class="btn <?php echo ($data["Category"] == "QuanTriVien") ? "btn-primary" : "btn-success"; ?>">
-                            Quản trị viên <span class="badge bg-danger"><?php echo ($data["Category"] == "QuanTriVien") ? $data["TongSoNguoiDung"] : ""; ?></span>
-                        </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/Lop10/1" type="input" class="btn <?php echo ($data["Category"] == "Lop10") ? "btn-primary" : "btn-success"; ?>">
-                            Lớp 10 <span class="badge bg-danger"><?php echo ($data["Category"] == "Lop10") ? $data["TongSoNguoiDung"] : ""; ?></span>
-                        </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/Lop11/1" type="input" class="btn <?php echo ($data["Category"] == "Lop11") ? "btn-primary" : "btn-success"; ?>">
-                            Lớp 11 <span class="badge bg-danger"><?php echo ($data["Category"] == "Lop11") ? $data["TongSoNguoiDung"] : ""; ?></span>
-                        </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/Lop12/1" type="input" class="btn <?php echo ($data["Category"] == "Lop12") ? "btn-primary" : "btn-success"; ?>">
-                            Lớp 12 <span class="badge bg-danger"><?php echo ($data["Category"] == "Lop12") ? $data["TongSoNguoiDung"] : ""; ?></span>
-                        </a>
+    <section class="py-5">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h2 class="text-primary mb-0">Danh sách tài khoản học sinh</h2>
+
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-plus-circle"></i> Thêm tài khoản học sinh mới
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a href="{{ route('teacher.users.mass_create_user') }}" class="dropdown-item">
+                                    Thêm hàng loạt vào nhóm
+                                </a>
+                                <a href="{{ route('teacher.users.create') }}" class="dropdown-item">
+                                    Thêm từng người vào nhóm
+                                </a>
+                            </div>
+                        </div>
+
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<?php } ?>
-<!--box-lists-->
-<div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Danh sách</h2>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <!-- responsive table -->
-                <div style="overflow-x:auto;">
-                    <table class="table table-striped jambo_table bulk_action">
-                        <thead>
-                            <tr class="headings">
-                                <th class="column-title">STT</th>
-                                <th class="column-title">Avatar</th>
-                                <th class="column-title">Họ và Tên</th>
-                                <th class="column-title">Tên đăng nhập</th>
-                                <th class="column-title">Năm sinh</th>
-                                <th class="column-title">Lớp</th>
-                                <th class="column-title">Tên nhóm</th>
-                                <th class="column-title">Email</th>
-                                <th class="column-title">Loại tài khoản</th>
-                                <th class="column-title">#</th>
+                    <div class="card-body">
+                        <table id="user-table" class="table card-text hover" style="width: 100%; overflow-x:auto;">
+                            <thead>
+                            <tr data-toggle="tooltip" title="Nhấn giữ phím Shift và chọn cột để sắp xếp theo nhiều cột">
+                                <th width="5%">STT</th>
+                                <th width="5%">#</th>
+                                <th width="15%">Họ và tên</th>
+                                <th width="15%">Tên đăng nhập</th>
+                                <th width="15%">Ngày sinh</th>
+                                <th width="5%">Lớp</th>
+                                <th width="20%">Nhóm</th>
+                                <th width="15%">Cập nhật lúc</th>
+                                <th width="5%">#</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            for ($i = 0; $i < count($data["DanhSachNguoiDung"]); $i++) {
-                                if ($data["DanhSachNguoiDung"][$i]["Avatar"] == "") {
-                                    $avatar = "/ExtraClassroomWebsite/public/img/no-avatar.png";
-                                } else {
-                                    $avatar = $data["DanhSachNguoiDung"][$i]["Avatar"];
-                                }
+                            </thead>
+                            <tbody>
+                            @foreach ($users as $user)
+                                <tr>
+                                    <th scope="row">{{$loop->iteration}}</th>
+                                    <td><img class="avatar" src="{!! $user->userAvatar !!}" alt="avatar"></td>
+                                    <td>{{ $user->userName }}</td>
+                                    <td>{{ $user->userEmail }}</td>
+                                    <td>{{ $user->userBirthday}}</td>
+                                    <td>{{ $user->userClass }}</td>
+                                    <td>{{ $user->groupName }}</td>
+                                    <td>{{ $user->userUpdatedAt }}</td>
 
-                                if ($data["DanhSachNguoiDung"][$i]["LoaiTaiKhoan"] == 0) {
-                                    $loaiTaiKhoan = "Quản trị viên";
-                                } else {
-                                    $loaiTaiKhoan = "Học sinh";
-                                }
-
-
-                                ?>
-                                <tr class="even pointer">
-                                    <td class=""><?php echo ($i + 50 * ($data["Page"] - 1) + 1); ?></td>
-                                    <td width="5%"><img src="<?php echo $avatar; ?>" alt="avatar" class="zvn-thumb"></td>
-                                    <td><?php echo $data["DanhSachNguoiDung"][$i]["HoTen"]; ?></td>
-                                    <td><?php echo $data["DanhSachNguoiDung"][$i]["Username"]; ?></td>
-                                    <td><?php echo $data["DanhSachNguoiDung"][$i]["NamSinh"]; ?></td>
-                                    <td><?php echo $data["DanhSachNguoiDung"][$i]["Lop"]; ?></td>
-                                    <td><?php echo $data["DanhSachNguoiDung"][$i]["TenNhom"]; ?></td>
-                                    <td><?php echo $data["DanhSachNguoiDung"][$i]["Email"]; ?></td>
-                                    <td><?php echo $loaiTaiKhoan; ?></td>
-                                    <td class="last">
-                                        <div class="zvn-box-btn-filter">
-                                            <a href="/ExtraClassroomWebsite/GiaoVien/ChinhSuaNguoiDung/<?php echo $data["DanhSachNguoiDung"][$i]["IdNguoiDung"]; ?>" type="input" class="btn btn-icon btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Chỉnh sửa">
+                                    <td>
+                                        <div>
+                                            <a href="{{ route('teacher.users.show', $user->userId) }}" type="input" class="btn btn-icon btn-secondary" data-toggle="tooltip" data-placement="top" data-original-title="Xem chi tiết">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="{{ route('teacher.users.edit', $user->userId) }}" type="input" class="btn btn-icon btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Chỉnh sửa">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
-                                            <a href="/ExtraClassroomWebsite/GiaoVien/XoaNguoiDung/<?php echo $data["DanhSachNguoiDung"][$i]["IdNguoiDung"]; ?>" type="input" class="deleteButton btn btn-icon btn-danger btn-delete" data-toggle="tooltip" data-placement="top" data-original-title="Xóa">
-                                                <i class="fa fa-trash"></i>
+
+                                            <a href="{{ route('teacher.users.destroy', $user->userId) }}"
+                                               type="input"
+                                               class="deleteButton btn btn-icon btn-danger btn-delete"
+                                               data-toggle="tooltip" data-placement="top" data-original-title="Xóa"
+                                               onclick="return confirmDeleteFunction('delete-form-{{ $user->userId }}');">
+                                                <i class="fas fa-trash"></i>
                                             </a>
+
+                                            <form id="delete-form-{{ $user->userId }}" action="{{ route('teacher.users.destroy', $user->userId) }}" method="POST"
+                                                  style="display: none;">
+                                                @method('DELETE') @csrf
+                                            </form>
+
                                         </div>
                                     </td>
                                 </tr>
-                            <?php
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<!--end-box-lists-->
-<!--box-pagination-->
-<?php if (isset($data["Category"])) { ?>
-<div class="x_panel">
-    <div class="x_title">
-        <h2>Phân trang</h2>
-        <div class="clearfix"></div>
-    </div>
-    <div class="x_content">
-        <div class="row">
-            <div class="col-md-6">
-                <p class="m-b-0">Tổng cộng: <span class="label label-success"><?php echo $data["TongSoNguoiDung"] ?></span> người dùng</p>
-            </div>
-            <div class="col-md-6">
-                <ul class="pagination zvn-pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/<?php echo $data["Category"]; ?>/<?php echo ($data["Page"] - 1 > 0) ? ($data["Page"] - 1) : 1; ?>">«</a>
-                    </li>
-
-                    <?php
-                    for ($i = 1; $i <= $data["MaxPage"]; $i++) {
-                        ?>
-                        <li class="page-item <?php echo ($i == $data["Page"]) ? "active" : ""; ?>"><a class="page-link" href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/<?php echo $data["Category"]; ?>/<?php echo $i ?>"><?php echo $i ?></a></li>
-                    <?php
-                    }
-                    ?>
-
-                    <li class="page-item">
-                        <a class="page-link" href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/<?php echo $data["Category"]; ?>/<?php echo ($data["Page"] + 1 <= $data["MaxPage"]) ? ($data["Page"] + 1) : $data["MaxPage"]; ?>">»</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<?php } ?>
-<!--end-box-pagination-->
+    </section>
 @endsection
 
 @section('body-custom-scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js" integrity="sha256-Ka8obxsHNCz6H9hRpl8X4QV3XmhxWyqBpk/EpHYyj9k=" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
+        $(document).ready(function() {
+            let table = $('#user-table').DataTable({
+                "language":
+                    {
+                        "emptyTable":     "Không tìm thấy dữ liệu",
+                        "info":           "Có _TOTAL_ tài khoản học sinh trong trang hiện tại",
+                        "infoEmpty":      "Số tài khoản học sinh trong trang hiện tại: 0",
+                        "infoFiltered":   "(đã lọc kết quả tìm kiếm từ _MAX_ tài khoản học sinh)",
+                        "lengthMenu":     "Hiển thị _MENU_ tài khoản học sinh",
+                        "loadingRecords": "Đang tải...",
+                        "processing":     "Đang xử lý...",
+                        "search":         "Tìm kiếm tài khoản học sinh:",
+                        "zeroRecords":    "Không tìm thấy kết quả nào",
+                        "paginate": {
+                            "first":      "Đầu tiên",
+                            "last":       "Cuối cùng",
+                            "next":       "Trang tiếp theo",
+                            "previous":   "Trang trước đó"
+                        }
+                    },
+                "paging": true,
+                "pageLength": 25,
+                "order": [[ 0, "asc" ]],
+                "columnDefs": [{
+                    "targets": 1,
+                    "orderable": false
+                }, {
+                    "targets": 8,
+                    "orderable": false
+                }]
+            });
+        } );
+    </script>
+
     <script src="{{ asset('js/NotifyFunctions.js') }}"></script>
 
     @if (Session::has('isStored'))
         <script type="text/javascript" defer>
-            addSuccessFunction("nhóm");
+            addSuccessFunction("tài khoản học sinh");
         </script>
     @endif
 
     @if (Session::has('isUpdated'))
         <script type="text/javascript" defer>
-            updateSucessFunction("nhóm");
+            updateSucessFunction("tài khoản học sinh");
         </script>
     @endif
 
     @if (Session::has('isDestroyed'))
         <script type="text/javascript" defer>
-            destroySucessFunction("nhóm");
+            destroySucessFunction("tài khoản học sinh");
         </script>
     @endif
 @endsection
-
-<script type="text/javascript" src="/ExtraClassroomWebsite/public/js/DeleteButton.js"></script>
-

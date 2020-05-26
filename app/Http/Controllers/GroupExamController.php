@@ -5,9 +5,17 @@ namespace App\Http\Controllers;
 use App\Exam;
 use App\Group;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GroupExamController extends Controller
 {
+    private $customMessages = [
+        'numberOfSubmit.required' => 'Tên nhóm không được rỗng',
+        'numberOfSubmit.min'  => 'Lớp không được rỗng',
+        'name.unique' => 'Tên nhóm đã tồn tại',
+        'name.max' => 'Tên nhóm phải ít hơn 255 ký tự'
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +24,7 @@ class GroupExamController extends Controller
      */
     public function index(Group $group)
     {
-        return redirect()->action('GroupExamController@create', $group);
+        return redirect()->action('GroupController@show', $group);
     }
 
     /**
@@ -27,7 +35,14 @@ class GroupExamController extends Controller
      */
     public function create(Group $group)
     {
-        return view('teacher.groups.exams.create');
+        $exams = DB::table('exams')
+            ->select([
+                'exams.id',
+                'exams.name'
+            ])
+            ->orderBy('exams.updated_at', 'desc')
+            ->get();
+        return view('teacher.groups.exams.create', compact(['group', 'exams']));
     }
 
     /**
@@ -39,7 +54,7 @@ class GroupExamController extends Controller
      */
     public function store(Request $request, Group $group)
     {
-        //
+        return $request->all();
     }
 
     /**

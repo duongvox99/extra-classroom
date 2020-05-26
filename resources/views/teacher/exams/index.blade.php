@@ -49,7 +49,7 @@
                                 @foreach ($exams as $exam)
                                     <tr>
                                         <th scope="row">{{$loop->iteration}}</th>
-                                        <td>{!! $exam->name !!}</td>
+                                        <td>{{ $exam->name }}</td>
                                         <td>{{ $exam->totalQuestion }}</td>
                                         <td>{{ $exam->time_limit }}</td>
                                         <td>{{ $exam->exam_updated_at }}</td>
