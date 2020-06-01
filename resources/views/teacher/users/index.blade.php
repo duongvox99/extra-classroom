@@ -31,9 +31,32 @@
                                 <a href="{{ route('teacher.users.mass_create_user') }}" class="dropdown-item">
                                     Thêm hàng loạt vào nhóm
                                 </a>
-                                <a href="{{ route('teacher.users.create') }}" class="dropdown-item">
+                                <a href="{{ route('teacher.users.create') }}" class="dropdown-item"data-toggle="modal" data-target="#create-student" >
                                     Thêm từng người vào nhóm
                                 </a>
+                            </div>
+                        </div>
+                        <div id="create-student"  class="modal fade" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Thêm từng người vào nhóm</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input name="emailStudent" type="email" class="form-control" id="InputEmailStudent" aria-describedby="emailHelp" placeholder="Nhập email">
+                                        <select class="selectgroup" id="groupStudent">
+                                            <option>Chọn nhóm</option>
+                                            @foreach ($groups as $group)
+                                                <option value="{{$group->groupId}}">{{$group->groupName}}</option>
+                                            @endforeach
+                                        </select>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                        <button type="button" class="btn btn-primary btn-add-student">Lưu</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -107,6 +130,40 @@
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(".btn-add-student").click(function(e){
+
+            e.preventDefault();
+
+            var value = $("#groupStudent").val();
+            var email = $("input[name=emailStudent]").val();
+            var url = '{{ route('teacher.users.create') }}';
+
+            $.ajax({
+                url:url,
+                method:'POST',
+                data:{
+                    Id:value,
+                    Email:email,
+                },
+                success:function(response){
+                    if(response.success){
+                        alert(response.message) //Message come from controller
+                    }else{
+                        alert("Error")
+                    }
+                },
+                error:function(error){
+                    console.log(error)
+                }
+            });
+        });
 
         $(document).ready(function() {
             let table = $('#user-table').DataTable({

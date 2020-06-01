@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\GroupUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -39,7 +40,14 @@ class UserController extends Controller
             ->orderBy('users.updated_at', 'desc')
             ->get();
 
-        return view('teacher.users.index', compact('users'));
+        $groups = DB::table('groups')
+            ->select([
+                'groups.name as groupName',
+                'groups.id as groupId'
+            ])
+            ->get();
+
+        return view('teacher.users.index', compact('users', 'groups'));
     }
 
     /**
@@ -47,9 +55,38 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('teacher.users.create');
+        $numRowTableUser = DB::table('users')->count();
+        $id_user = (string)$numRowTableUser + 1;
+
+        User::insert([
+            'id' => $id_user,
+            'name' => '',
+            'email' => $request->Email,
+            'type_user' => '1',
+            'password' => '',
+            'avatar'=>''
+        ]);
+
+        $numRowTableGroupUser = DB::table('group_user')->count();
+        $users_id = DB::table('users')->where('email', $request->Email)->value('id');
+        $users_id = (string)$users_id;
+
+        GroupUser::insert([
+            'user_id' => $users_id,
+            'id' => $numRowTableGroupUser + 1,
+            'group_id' => $request->Id,
+            'is_active' => true
+        ]);
+
+        return response()->json(
+            [
+                'success' => true,
+                'message' => 'Data inserted successfully'
+            ]
+        );
+        //return view('teacher.users.create');
     }
 
     /**
@@ -127,7 +164,7 @@ class UserController extends Controller
      */
     public function showCreateMassUser()
     {
-        //
+        return view('teacher.users.mass_user');
     }
 
     /**

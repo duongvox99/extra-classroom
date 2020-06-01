@@ -49,6 +49,9 @@ Route::middleware(['auth', 'is_teacher'])->name('teacher.')->prefix('teacher')->
     Route::get('users/mass_create', 'UserController@showCreateMassUser')->name('users.mass_create_user');
     Route::post('users/mass_create', 'UserController@createMassUser')->name('users.store_mass_create_user');
 
+    Route::get('users/create', 'UserController@create')->name('users.create');
+    Route::post('users/create', 'UserController@create')->name('users.create');
+
     Route::get('questions/import', 'QuestionController@showCreateFromImport')->name('questions.import_from_docx');
     Route::post('questions/import', 'QuestionController@storeFromImport')->name('questions.store_import_from_docx');
 
