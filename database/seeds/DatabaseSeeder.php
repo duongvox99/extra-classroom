@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             GroupSeeder::class,
             TypeClassSeeder::class,
             TypeQuestionSeeder::class,
+            UsersTableSeeder::class,
         ]);
     }
 }

@@ -6,6 +6,7 @@ use App\User;
 use App\GroupUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use League\Flysystem\Exception;
 
 class UserController extends Controller
 {
@@ -57,36 +58,48 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-        $numRowTableUser = DB::table('users')->count();
-        $id_user = (string)$numRowTableUser + 1;
+        try {
 
-        User::insert([
-            'id' => $id_user,
-            'name' => '',
-            'email' => $request->Email,
-            'type_user' => '1',
-            'password' => '',
-            'avatar'=>''
-        ]);
+            $numRowTableUser = DB::table('users')->count();
+            $id_user = (string)$numRowTableUser + 1;
 
-        $numRowTableGroupUser = DB::table('group_user')->count();
-        $users_id = DB::table('users')->where('email', $request->Email)->value('id');
-        $users_id = (string)$users_id;
+            User::insert([
+                'id' => $id_user,
+                'name' => '',
+                'email' => $request->Email,
+                'type_user' => '1',
+                'password' => '',
+                'avatar'=>''
+            ]);
 
-        GroupUser::insert([
-            'user_id' => $users_id,
-            'id' => $numRowTableGroupUser + 1,
-            'group_id' => $request->Id,
-            'is_active' => true
-        ]);
+            $numRowTableGroupUser = DB::table('group_user')->count();
+            $users_id = DB::table('users')->where('email', $request->Email)->value('id');
+            $users_id = (string)$users_id;
+
+            GroupUser::insert([
+                'user_id' => $users_id,
+                'id' => $numRowTableGroupUser + 1,
+                'group_id' => $request->Id,
+                'is_active' => true
+            ]);
+
+        } catch (\PDOException $e) {
+
+            if($e->getCode() == 23000)
+                return response()->json(
+                    [
+                        'success' => true,
+                        'message' => 'Email đã có sẵn >_<'
+                    ]
+                );
+        }
 
         return response()->json(
             [
                 'success' => true,
-                'message' => 'Data inserted successfully'
+                'message' => 'Thêm tài khoản học sinh thành công'
             ]
         );
-        //return view('teacher.users.create');
     }
 
     /**

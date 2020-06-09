@@ -50,7 +50,7 @@
                                                 <option value="{{$group->groupId}}">{{$group->groupName}}</option>
                                             @endforeach
                                         </select>
-
+                                        <p class="alert alert-success" id="msg"></p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
@@ -136,9 +136,9 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
+        $("#msg").hide();
         $(".btn-add-student").click(function(e){
-
+            $("#msg").show();
             e.preventDefault();
 
             var value = $("#groupStudent").val();
@@ -154,9 +154,9 @@
                 },
                 success:function(response){
                     if(response.success){
-                        alert(response.message) //Message come from controller
-                    }else{
-                        alert("Error")
+                        $("#msg").html(response.message);
+                    } else {
+                        $("#msg").html('Nhập thông tin bị lỗi!!!');
                     }
                 },
                 error:function(error){
