@@ -79,11 +79,11 @@ Route::middleware(['auth', 'is_teacher'])->name('teacher.')->prefix('teacher')->
 
 Route::middleware(['auth', 'is_student'])->name('student.')->prefix('student')->group(function () {
     Route::get('', 'StudentController@studentDashboard')->name('dashboard');
-    Route::get('notifications', 'StudentController@showNotifications')->name('notifications');
-    Route::get('notifications/{id}', 'StudentController@showNotification')->where('id', '[0-9]+')->name('notification');
-    Route::get('exams', 'StudentController@showExams')->name('exams');
-    Route::get('exams/{id}', 'StudentController@showExam')->where('id', '[0-9]+')->name('exams');
-    Route::post('exams/{id}', 'StudentController@submitAfterDoExam')->where('id', '[0-9]+')->name('exams');
+    Route::get('notifications', 'StudentController@showNotifications')->name('notifications.index');
+    Route::get('notifications/{id}', 'StudentController@showNotification')->where('id', '[0-9]+')->name('notification.show');
+    Route::get('exams', 'StudentController@showExams')->name('exams.index');
+    Route::get('exams/{id}', 'StudentController@showExam')->where('id', '[0-9]+')->name('exams.show');
+    Route::post('exams/{id}', 'StudentController@submitAfterDoExam')->where('id', '[0-9]+')->name('exams.store');
 
     // url search
 });
